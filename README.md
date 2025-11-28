@@ -7,9 +7,9 @@ This html code page for use in my domain (perhaps yours too) was a project that 
 it is now 100% Complete and features two verry special Suggested links if you dont want to use your own link you have for a video (youtube video) and I have used Google's Gemini Coding Companion to use other effects , other than the original pages chat-gpt suggested ones, it has now got a whole selection of sliders for each different effects aspect (scripted), AND AN AUTO GLITCH BUTTON TO START THE EFFECT OFF,
 AND A RANDOMIZE BUTTON TO RANDOMIZE THE EFFECT PALLET.
 
-\\\SEE THIS PAGE HERE : https://www.imortalimp.nl/powerloader-pages/glitch-canvas-youtube-video.html ///
+\\\SEE THIS PAGE HERE : [https://www.imortalimp.nl/powerloader-pages/glitch-canvas-youtube-video.html](https://www.imortalimp.nl/powerloader-pages/glitch-canvas-youtube-video.html) ///
 Notes
-[https://www.imortalimp.nl/powerloader-pages/glitch-canvas-youtube-video.html](https://archive.org/details/glitch-canvas-youtube-video)
+[[https://www.imortalimp.nl/powerloader-pages/glitch-canvas-youtube-video.html](https://archive.org/details/glitch-canvas-youtube-video)](https://archive.org/details/glitch-canvas-youtube-video)
 
 All rights reserved under creative commons licence,
 Credit list:
