@@ -4,6 +4,19 @@
   <meta charset="UTF-8" />
   <title>Glitch Canvas YouTube</title>
   <style>
+    #suggestedVideo, #suggestedPlaylist, #suggestedVideo2, #suggestedVideo3,
+    #ytInput, #startBtn, #randomizeBtn, #autoGlitchBtn, #continualRandomizeBtn,
+    #sliderContainer, #wired-btn {
+        opacity: 0.2;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    #suggestedVideo:hover, #suggestedPlaylist:hover, #suggestedVideo2:hover, #suggestedVideo3:hover,
+    #ytInput:hover, #startBtn:hover, #randomizeBtn:hover, #autoGlitchBtn:hover, #continualRandomizeBtn:hover,
+    #sliderContainer:hover, #wired-btn:hover {
+        opacity: 1;
+    }
+
     html, body {
       margin: 0; padding: 0; overflow: hidden;
       background: black;
@@ -126,6 +139,22 @@
     }
     .slider-group input[type="range"] {
         margin-left: 100px;
+    }
+
+    .lock-button {
+      font-family: monospace;
+      font-size: 12px;
+      color: white;
+      background: black;
+      border: 1px solid white;
+      margin-left: 260px;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+
+    .lock-button.locked {
+      color: black;
+      background: white;
     }
 
     /* Notification style */
@@ -655,6 +684,7 @@ const dataBombDef = { name: 'Data Bomb', defaultAlpha: 0.0 };
 const allEffectDefinitions = [...timedEffectsDefs, ...instantEffectsDefs, dataBombDef];
 const effectAlphas = {};
 const sliderElements = {};
+const sliderLocks = {}; // Object to store lock states
 
 function applyMasterFilters() {
     const body = document.body;
@@ -704,6 +734,8 @@ sliderContainer.appendChild(globalGroup);
 
 ([...timedEffectsDefs, ...instantEffectsDefs, dataBombDef, ...masterEffectsDefs]).sort((a, b) => a.name.localeCompare(b.name)).forEach(def => {
   effectAlphas[def.name] = def.defaultAlpha;
+  sliderLocks[def.name] = false; // Initialize all as unlocked
+
   const group = document.createElement('div');
   group.className = 'slider-group';
   const label = document.createElement('label');
@@ -733,26 +765,45 @@ sliderContainer.appendChild(globalGroup);
 
   group.appendChild(label);
   group.appendChild(slider);
+  
+    // Add Lock Button
+    const lockButton = document.createElement('button');
+    lockButton.className = 'lock-button';
+    lockButton.textContent = '<LOCK!>';
+    lockButton.addEventListener('click', () => {
+        sliderLocks[def.name] = !sliderLocks[def.name]; // Toggle lock state
+        lockButton.classList.toggle('locked', sliderLocks[def.name]);
+        lockButton.textContent = sliderLocks[def.name] ? '[LOCKED!]' : '<LOCK!>';
+    });
+
+    group.appendChild(lockButton);
+  
   sliderContainer.appendChild(group);
 });
 
 function generateNewRandomTargets() {
   Object.keys(effectAlphas).forEach(name => {
-    randomTargetAlphas[name] = Math.random();
+    if (!sliderLocks[name]) {
+        randomTargetAlphas[name] = Math.random();
+    }
   });
   // Also randomize the global opacity
   randomTargetAlphas['global'] = Math.random();
 }
 
 randomizeBtn.addEventListener('click', () => {
-  const randomGlobalOpacity = Math.random();
-  masterOpacity = randomGlobalOpacity;
-  globalSlider.value = randomGlobalOpacity;
-  Object.keys(effectAlphas).forEach(effectName => {
-    const randomValue = Math.random();
-    effectAlphas[effectName] = randomValue;
-    sliderElements[effectName].value = randomValue;
-  });
+    // Global opacity is not lockable, so it always randomizes
+    const randomGlobalOpacity = Math.random();
+    masterOpacity = randomGlobalOpacity;
+    globalSlider.value = randomGlobalOpacity;
+
+    Object.keys(effectAlphas).forEach(effectName => {
+        if (!sliderLocks[effectName]) { // Only randomize if not locked
+            const randomValue = Math.random();
+            effectAlphas[effectName] = randomValue;
+            sliderElements[effectName].value = randomValue;
+        }
+    });
 });
 
 continualRandomizeBtn.addEventListener('click', () => {
@@ -834,13 +885,15 @@ function mainRenderLoop() {
 
         // Handle all other effect sliders
         Object.keys(effectAlphas).forEach(key => {
-            const target = randomTargetAlphas[key];
-            const diff = target - effectAlphas[key];
-            if (Math.abs(diff) < randomizationSpeed) {
-                randomTargetAlphas[key] = Math.random(); // Get new target
-            } else {
-                effectAlphas[key] += Math.sign(diff) * randomizationSpeed;
-                sliderElements[key].value = effectAlphas[key];
+            if (!sliderLocks[key]) { // Only randomize if not locked
+                const target = randomTargetAlphas[key];
+                const diff = target - effectAlphas[key];
+                if (Math.abs(diff) < randomizationSpeed) {
+                    randomTargetAlphas[key] = Math.random(); // Get new target
+                } else {
+                    effectAlphas[key] += Math.sign(diff) * randomizationSpeed;
+                    sliderElements[key].value = effectAlphas[key];
+                }
             }
         });
   }
@@ -932,16 +985,31 @@ randomSeedSlider.addEventListener('input', () => {
     const seed = parseFloat(randomSeedSlider.value);
     const seededRandom = createSeededRandom(seed);
 
-    // Set global opacity
+    // Set global opacity (not lockable)
     const randomGlobalOpacity = seededRandom();
-    masterOpacity = randomGlobalOpacity;
+    masterOpacity = randomGlobalOpacity; // Corrected typo from 'randomGlobalopacity'
     globalSlider.value = randomGlobalOpacity;
 
-    // Set effect alphas
+    // Set effect alphas for all sliders based on the seed
     Object.keys(effectAlphas).forEach(effectName => {
-        const randomValue = seededRandom();
-        effectAlphas[effectName] = randomValue;
-        sliderElements[effectName].value = randomValue;
+        if (!sliderLocks[effectName]) { // Only randomize if not locked
+            const randomValue = seededRandom();
+            effectAlphas[effectName] = randomValue;
+            if (sliderElements[effectName]) {
+                sliderElements[effectName].value = randomValue;
+            }
+        }
+    });
+
+    // Also trigger short bursts of timed effects
+    timedEffectsDefs.forEach(def => {
+        if (seededRandom() > 0.7) { 
+            const strength = seededRandom() * 0.8 + 0.2;
+            const getStrength = () => strength;
+            
+            const timedEffectFn = def.factory(getStrength, false);
+            activeEffects.push(timedEffectFn);
+        }
     });
 });
 
