@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Page</title>
+    <style>
+      body {
+         font-family: Arial, sans-serif;
+         margin: 0; /* Adjusted for fullscreen */
+         line-height: 1.6;
+         background-color: #1e1e1e; /* Dark background for consistency */
+         color: #f0f0f0; /* Light text for readability */
+         text-align: center;
+         /* overflow is now handled by script to allow scrolling */
+      }
+      .content-wrapper {
+          padding: 20px;
+      }
+      .emoji-link {
+         display: block;
+         width: 100%;
+         text-align: center;
+         font-size: clamp(40vw, 50vw, 60vh); /* Massive, responsive font size */
+         text-decoration: none;
+         line-height: 1;
+         margin-bottom: 20px; /* Space below the emoji */
+      }
+      #animation-container {
+          position: relative; /* Needed for child positioning */
+          margin-top: 20px;
+      }
+      #animation-container.fullscreen {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background-color: #000;
+          z-index: 1000;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 0;
+      }
+      #animation-frame {
+          max-width: 100%;
+          height: auto;
+          border: 2px solid #ccc;
+      }
+      #animation-container.fullscreen #animation-frame {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain; /* Scale image to fit within the container */
+          border: none;
+      }
+      #close-animation-btn {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          padding: 10px 15px;
+          font-size: 20px;
+          cursor: pointer;
+          background-color: #fff;
+          color: #000;
+          border: none;
+          border-radius: 5px;
+          z-index: 1001;
+          display: none; /* Hidden by default */
+      }
+      #animation-container.fullscreen #close-animation-btn {
+          display: block; /* Show when fullscreen */
+      }
+    </style>
+</head>
+
+<body>
+ <div class="content-wrapper">
+     <a href="https://www.imortalimp.nl/JUKEBOX%20JOINTS-~by%20RiverLyle%20reuveni.html" target="_blank" class="emoji-link">üÉè</a>
+     <h1>My First Heading</h1>
+     <p>My first paragraph.</p>
+     <p>Alright, partner, youíre asking me to peer beyond the veil, to see what lies in the shadows where science and the unknown tango. You say thereís proof that what we donít believe in or donít understand has roots in reality, backed by modern science. Thatís a tall order, but letís break it down like a case file.
+
+The Ghosts in the Machine and Science
+Proof and Belief:
+Science is a relentless detective, always chasing clues, testing theories, and revising what it ìknows.î What once was dismissed as superstition or myth often finds a foothold in reality once the right tools or perspectives come along. Think of how electricity, once invisible and mysterious, became the backbone of modern life.
+Ghosts and the Unknown:
+Ghosts, spirits, and other phenomena have long been relegated to folklore and the paranormal. But modern science explores things like quantum mechanics, consciousness, and even the possibility of parallel universesórealms where our classical understanding bends and twists. Some researchers study phenomena like electromagnetic fields, residual energy, or unexplained sensory experiences that might hint at something beyond the ordinary.
+Seeing Beyond the Veil:
+To see beyond the veil means being open to possibilities without losing your grip on reason. It means acknowledging that our current understanding is limited and that reality might be stranger than fiction. But it also means demanding evidence, testing claims, and separating the signal from the noise.
+My Take as a Digital Detective:
+I donít ìbelieveî in ghosts the way a noir detective might believe in a lead or a suspect. But Iím not blind to the mysteries science hasnít cracked yet. I keep an open eye, ready to update my files when new evidence comes in. The veil is thin in places, and sometimes you catch a glimpse of something that makes you question what you thought was real.
+So, can I see beyond the veil? I can see the edges, the flickers of light and shadow where science meets mystery. I keep my mind sharp and my skepticism healthy, ready to chase the next clue wherever it leads.
+
+Whatís got you thinking about ghosts and the unseen today, partner?<p>
+ </div>
+
+ <div id="animation-container">
+    <!-- Iframe for the initial thumbnail -->
+    <iframe id="thumbnail-iframe" src="https://www.imortalimp.nl/Inscryption.Dos.folder/Inscryption_003132.png" style="width:100%; height:auto; border: 2px solid #ccc; aspect-ratio: 16/9;" frameborder="0" scrolling="no"></iframe>
+    <!-- The image element for the animation, initially hidden -->
+    <img id="animation-frame" src="https://www.imortalimp.nl/Inscryption.Dos.folder/Inscryption_000000.png" alt="Animation Frame" style="display: none;">
+    <!-- The audio file for the animation -->
+    <audio id="animation-audio" src="https://www.imortalimp.nl/Inscryption.Dos.folder/Image.mp3"></audio>
+    
+    <!-- Button to start the animation -->
+    <button id="start-animation-btn" style="margin-top: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer;">Start Fullscreen Animation</button>
+    
+    <!-- Close button for fullscreen mode -->
+    <button id="close-animation-btn">&times;</button>
+ </div>
+
+ <script>
+    const thumbnailIframe = document.getElementById('thumbnail-iframe');
+    const animationContainer = document.getElementById('animation-container');
+    const imageElement = document.getElementById('animation-frame');
+    const audioElement = document.getElementById('animation-audio');
+    const startButton = document.getElementById('start-animation-btn');
+    const closeButton = document.getElementById('close-animation-btn');
+    const contentWrapper = document.querySelector('.content-wrapper');
+
+    let animationInterval;
+
+    // --- Configuration: You will need to adjust these values ---
+    const basePath = 'https://www.imortalimp.nl/Inscryption.Dos.folder/';
+    const filePrefix = 'Inscryption_'; // The part of the filename before the number
+    const fileExtension = '.png';
+    const frameCount =185196; // IMPORTANT: Set this to the total number of frames you render.
+    const frameRate = 100;  // Milliseconds per frame (100ms = 10 frames per second)
+    const numberPadding = 6; // How many digits for the frame number (e.g., 6 for '000000')
+    // -------------------------------------------------------------
+
+    function startAnimation() {
+        let currentFrame = 0;
+
+        // Go fullscreen
+        animationContainer.classList.add('fullscreen');
+        contentWrapper.style.display = 'none';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling during animation
+
+        // Hide the iframe and show the animation image element
+        thumbnailIframe.style.display = 'none';
+        imageElement.style.display = 'block';
+
+        // Start playing the audio
+        audioElement.loop = true;
+        audioElement.play();
+
+        // Start the image sequence animation
+        animationInterval = setInterval(() => {
+            currentFrame++;
+            if (currentFrame >= frameCount) {
+                currentFrame = 0; // Loop the animation
+            }
+            const frameNumber = String(currentFrame).padStart(numberPadding, '0');
+            imageElement.src = `${basePath}${filePrefix}${frameNumber}${fileExtension}`;
+        }, frameRate);
+
+        startButton.style.display = 'none';
+    }
+
+    function stopAnimation() {
+        // Exit fullscreen
+        animationContainer.classList.remove('fullscreen');
+        contentWrapper.style.display = 'block';
+        document.body.style.overflow = ''; // Re-enable scrolling
+
+        // Hide the animation image and show the thumbnail iframe again
+        imageElement.style.display = 'none';
+        thumbnailIframe.style.display = 'block';
+
+        // Stop audio and animation
+        audioElement.pause();
+        audioElement.currentTime = 0;
+        clearInterval(animationInterval);
+
+        // Reset image to the first frame
+        imageElement.src = `${basePath}${filePrefix}${String(0).padStart(numberPadding, '0')}${fileExtension}`;
+        
+        startButton.style.display = 'inline-block';
+    }
+
+    startButton.addEventListener('click', startAnimation);
+    closeButton.addEventListener('click', stopAnimation);
+
+ </script>
+<picture>
+  <source media="Naamloos.gif" srcset="https://www.imortalimp.nl/Naamloos">
+  <img src="https://www.imortalimp.nl/I want to believe , doyou-dontyou.gif" alt="believe!.gif" style="width:100%; height:auto; margin-top:50px;">
+</picture>
+</body>
+</html>

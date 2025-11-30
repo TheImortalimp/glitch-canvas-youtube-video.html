@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Double-OH Six Home!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Styles for the Prologue Dropdown */
+    #prologue-dropdown-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0; /* Initially closed */
+      overflow: hidden;
+      background-color: rgba(0, 0, 0, 0.95); /* Dark, semi-transparent background */
+      border-bottom: 2px solid #00ffff; /* Cyan border from CRT theme */
+      box-shadow: 0 5px 20px rgba(0, 255, 255, 0.4); /* Cyan glow shadow */
+      z-index: 9990; /* Below the arrow, above main content */
+      transition: height 0.5s ease-in-out; /* Smooth open/close animation */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding-top: 40px; /* Space for the toggle button */
+      box-sizing: border-box;
+    }
+
+    #prologue-dropdown-container.open {
+      height: 80vh; /* Adjust as desired when open */
+    }
+
+    #prologue-dropdown-container iframe {
+      width: 90%; /* Slightly less than 100% to give some padding */
+      max-width: 800px; /* Max width for readability */
+      height: calc(100% - 20px); /* Adjust for top/bottom padding within the container */
+      border: 1px solid rgba(0, 255, 255, 0.5); /* Subtle inner border */
+      border-radius: 8px;
+      box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
+      background-color: #1a1a1a; /* Dark background for the iframe content area */
+    }
+
+    #prologue-toggle-btn {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9991; /* Above the dropdown container */
+      font-family: 'Unica One', cursive; /* Match main site font */
+      font-size: 1.1rem;
+      padding: 8px 20px;
+      border-radius: 0 0 8px 8px;
+      background: #00ffff; /* Cyan button */
+      color: #181818; /* Dark text */
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 2px 10px rgba(0, 255, 255, 0.5);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #prologue-toggle-btn:hover {
+      background: #39ffff;
+      box-shadow: 0 2px 15px rgba(0, 255, 255, 0.8);
+    }
+
+  </style>
+  <style>
+    :root {
+      --arrow-margin: 56px;
+      --corner-time: 1500ms;
+      --easing: cubic-bezier(.68,-0.55,.27,1.55);
+    }
+
+    html, body {
+      height:100%;
+      margin:0;
+      font-family:'Roboto', sans-serif;
+      /*background: linear-gradient(135deg,#181818 0%,#232526 100%);*/
+      background-image: url('IMG-20251112-WA0011 - kopie 006.webp');
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+      color:#f3f3f3;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .main-container {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      width:90%;
+      max-width:1200px;
+      z-index: 10; /* medium */
+    }
+
+    /* START CHAT button container */
+    .assistant-card {
+      background:#23283a;
+      border-radius:16px;
+      box-shadow:0 8px 32px rgba(0,0,0,.3);
+      padding:2rem 1.5rem;
+      text-align:center;
+      width:100%;
+      max-width:500px;
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      z-index:1000; /* highest for button */
+    }
+
+    .assistant-card p, .assistant-card h1 {
+      z-index:999; /* one lower than parent */
+    }
+
+    .start-btn {
+      font-family: inherit;
+      font-size:1.5rem;
+      padding:.8rem 2.2rem;
+      border-radius:8px;
+      border:none;
+      background:#ffeb3b;
+      color:#23283a;
+      font-weight:bold;
+      cursor:pointer;
+      margin-top:1.5rem;
+      box-shadow:0 2px 8px rgba(0,0,0,.2);
+      transition:background .2s;
+      z-index:1001; /* highest */
+      position:relative;
+    }
+    .start-btn:hover{ background:#fff700; }
+
+    /* Arrow */
+    #arrow {
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%) rotate(45deg);
+      width:120px;
+      height:120px;
+      stroke:#ffeb3b;
+      stroke-width:12;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      fill:none;
+      filter:drop-shadow(0 0 16px #fff700);
+      opacity:1;
+      z-index:9999; /* Set to the highest priority to be on top of everything */
+      pointer-events:none;
+      transition: transform var(--corner-time) var(--easing), left var(--corner-time) var(--easing), top var(--corner-time) var(--easing);
+      animation: flash 0.6s infinite alternate;
+    }
+    @keyframes flash{ from{opacity:1} to{opacity:.35} }
+
+    /* Hide arrow on mobile devices */
+    @media (max-width: 768px) {
+      #arrow {
+        display: none;
+      }
+    }
+
+    /* --- Double-OH-Six / Black Ice CRT Theme for Placeholder --- */
+    #bp-placeholder {
+      /* Core Colors & Font */
+      background-color: #0A0A0A;
+      color: #00FFFF;
+      font-family: 'Courier New', Courier, monospace;
+
+      /* CRT Effects */
+      position: relative;
+      overflow: hidden;
+      animation: crt-flicker 0.2s infinite;
+      text-shadow: 0 0 3px #00ffff;
+      box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+      border: 1px solid #00FFFF;
+
+      /* Centering content inside the placeholder */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    /* Scanline overlay for the placeholder */
+    #bp-placeholder::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 50%, rgba(0, 0, 0, 0.25) 50%);
+      background-size: 100% 3px;
+      opacity: 0.4;
+      animation: scanline-move 5s linear infinite;
+      pointer-events: none; /* Allows clicking through the overlay */
+      z-index: 1;
+    }
+
+    /* Keyframe Animations for the Effects */
+    @keyframes crt-flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.95; }
+    }
+
+    @keyframes scanline-move {
+      from { background-position: 0 0; }
+      to { background-position: 0 3px; }
+    }
+    /* --- End of CRT Theme --- */
+
+    /* --- Embedded Botpress Chatbot Theme --- */
+    #bp-embedded-webchat {
+      /* The chatbot will fill its container */
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Scanline overlay for the CRT effect */
+    #bp-embedded-webchat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.08) 50%, rgba(0,0,0,0.25) 50%);
+      background-size: 100% 3px;
+      opacity: 0.4;
+      animation: scanline-move 5s linear infinite;
+      pointer-events: none; /* Allows clicking through the overlay */
+    }
+
+    /* --- Responsive Botpress Container --- */
+    /* Default: Fullscreen for mobile */
+    .botpress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 2000; /* Reset to a high, but lower than arrow, z-index */
+      padding: 0;
+      margin: 0;
+      /* Apply CRT glow and shadow */
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 
+                  0 0 20px rgba(0, 255, 255, 0.4), 
+                  inset 0 0 15px rgba(0, 255, 255, 0.2);
+      border: 2px solid #00ffff;
+      border-radius: 0; /* No radius for fullscreen */
+      animation: crt-flicker 0.2s infinite;
+      overflow: hidden;
+    }
+
+    /* Media Query for tablets, laptops, desktops */
+    @media (min-width: 769px) {
+      .botpress-container {
+        /* Reposition to bottom-right corner */
+        top: auto;
+        left: auto;
+        bottom: 32px;
+        right: 32px;
+        width: min(92vw, 420px); /* Use a max-width */
+        height: 600px; /* Set a fixed height */
+        border-radius: 12px; /* Add back the radius */
+      }
+    }
+
+    /* Discord widget */
+    .discord-widget {
+      position:fixed;
+      left:32px;
+      bottom:32px;
+      width:min(92vw,420px);
+      z-index:400; /* medium-lower */
+      background:#23283a;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 4px 16px rgba(0,0,0,.5);
+    }
+
+    /* Botpress widget */
+    .botpress-widget {
+      position:fixed;
+      right:32px;
+      bottom:32px;
+      width:min(92vw,420px);
+      z-index:400; /* medium-lower */
+    }
+
+    iframe { width:100%; height:500px; border:none; display:block; border-radius:12px; }
+
+Footer CSS
+footer {
+  margin-top: auto;
+}
+
+.footer-wrapper {
+  margin-top: auto;
+}
+
+.footer-text {
+  text-align: center;
+  color: #ffd700; /* rich gold tone */
+  pointer-events: auto;
+  font-family: 'Segoe UI', 'Segoe UI Emoji', sans-serif;
+  padding: 30px 20px;
+  background-color: #1c1c1c;
+  background: linear-gradient(to right, #889200 0%, #8b4646 25%, #8b4646 75%, #889200 100%);
+  border: 8px solid #d4af37;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  animation: borderGleam 3s ease-in-out infinite,
+             borderGlow 3s ease-in-out infinite;
+}
+
+/* Footer link styling */
+.footer-link {
+  color: #ffd700;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+.footer-link:hover {
+  color: #fffacd; /* lighter gold */
+  text-shadow: 0 0 6px #ffd700, 0 0 12px #ffa500;
+}
+
+/* Animated glowing border */
+@keyframes borderGleam {
+  0%   { box-shadow: 0 0 8px #d4af37, 0 0 15px rgba(212, 175, 55, 0.3); }
+  50%  { box-shadow: 0 0 20px #ffd700, 0 0 40px #ffea70; }
+  100% { box-shadow: 0 0 8px #d4af37, 0 0 15px rgba(212, 175, 55, 0.3); }
+}
+@keyframes borderGlow {
+  0% {
+    box-shadow: 0 0 6px #d4af37,
+                0 0 12px rgba(212, 175, 55, 0.4),
+                0 0 20px rgba(212, 175, 55, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 12px #ffd700,
+                0 0 25px rgba(255, 215, 0, 0.6),
+                0 0 40px rgba(255, 215, 0, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 6px #d4af37,
+                0 0 12px rgba(212, 175, 55, 0.4),
+                0 0 20px rgba(212, 175, 55, 0.2);
+  }
+}
+
+/* Gleaming shimmer animation for text */
+.footer-text p {
+  font-size: 18px;
+  animation: gleam 8s ease-in-out infinite;
+}
+@keyframes gleam {
+  0%   { text-shadow: 0 0 5px #d4af37, 0 0 10px #d4af37; }
+  50%  { text-shadow: 0 0 10px #fff8dc, 0 0 20px #d4af37; }
+  100% { text-shadow: 0 0 5px #d4af37, 0 0 10px #d4af37; }
+}
+
+/* Emoji animation */
+.footer-text p .emoji {
+  display: inline-block;
+  font-size: 1.6em;
+  animation: floatSpin 5s ease-in-out infinite,
+             rainbowGlow 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
+  transform-origin: center;
+}
+
+/* Floating & spinning effect */
+@keyframes floatSpin {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); }
+  25%  { transform: translateY(-6px) rotate(8deg) scale(1.05); }
+  50%  { transform: translateY(0) rotate(0deg) scale(1); }
+  75%  { transform: translateY(6px) rotate(-8deg) scale(1.05); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+/* Rainbow glowing emojis */
+@keyframes rainbowGlow {
+  0%   { filter: drop-shadow(0 0 6px #ff00cc) drop-shadow(0 0 36px #ff00cc); }
+  25%  { filter: drop-shadow(0 0 6px #ffff00) drop-shadow(0 0 12px #ffff00); }
+  50%  { filter: drop-shadow(0 0 6px #222fe6) drop-shadow(0 0 36px #222fe6); }
+  75%  { filter: drop-shadow(0 0 6px #ff9900) drop-shadow(0 0 12px #ff9900); }
+  90%  { filter: drop-shadow(0 0 12px #0dc71c) drop-shadow(0 0 24px #0dc71c); }
+  100% { filter: drop-shadow(0 0 12px #e91dfc) drop-shadow(0 0 48px #e91dfc); }
+}
+</style>
+</head>
+<body>
+  <button id="prologue-toggle-btn">Show Prologue</button>
+  <div id="prologue-dropdown-container">
+    <iframe src="https://docs.google.com/document/d/e/2PACX-1vR486092N61D51XGr_LkV-66aYaJVHlNCTZCsONSmHD6u2ZmvM87DZWBlIahQDxqD8O45Pg3unNzVf0/pub?embedded=true"></iframe>
+  </div>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NTXL35MFPT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NTXL35MFPT');
+</script>
+<div class="main-container">
+  <div class="assistant-card">
+    <h1>Meet <span style="color:#ffeb3b;">Double-OH SIX</span></h1>
+    <p>Your friendly AI assistant.<br>Try the chat or join our Discord!</p>
+    <button class="start-btn" id="startBtn">Start Chat</button>
+  </div>
+</div>
+
+<!-- Arrow SVG -->
+<svg id="arrow" viewBox="0 0 120 120">
+  <polyline points="20,20 100,100"></polyline>
+  <polygon points="100,100 80,90 90,80" fill="#ffeb3b"></polygon>
+</svg>
+
+<!-- Discord Widget -->
+<div class="discord-widget">
+  <iframe src="https://discord.com/widget?id=1391982241004916786&theme=light" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+</div>
+
+<!-- Responsive container for the embedded Botpress widget -->
+<div class="botpress-container">
+  <div id="bp-embedded-webchat">
+    <script src="https://cdn.botpress.cloud/webchat/v3.3/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2025/07/16/18/20250716182151-D4S5G5R5.js" defer></script>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer-text footer-wrapper">
+  <p>
+    DONATIONS are welcome via PayPal:  
+    <a href="mailto:reuveni.river.lyle.reuveni@gmail.com" class="footer-link">
+    "  reuveni.river.lyle.reuveni@gmail.com "
+    </a>  
+    or via Card to Revolut Bank 
+    <a href="https://revolut.me/riverlyle" target="_blank" class="footer-link">
+    "  @riverlyle "
+    </a>
+    <br><br>
+
+    © 2025 Imortalimp ~ All Rights Reserved  
+    <br>
+    © 2025 Double-OH SIX your AI assistant 🌌 — All rights reserved.
+    <br><br>
+
+    <span class="emoji">🌈</span><span class="emoji">✨</span><span class="emoji">🌟</span><span class="emoji">🌞</span>
+    <span class="emoji">🌜</span><span class="emoji">💫</span>
+    Crafted with creativity, curiosity, and Copilot  
+    <span class="emoji">🌠</span><span class="emoji">🌈</span><span class="emoji">✨</span><span class="emoji">🌟</span>
+    <br>
+
+    Code edited and refined in collaboration with Microsoft's AI Companion.  
+    <br>
+    AI Companion Double-OH-Six is here →  
+    <a href="https://cdn.botpress.cloud/webchat/v3.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/07/16/18/20250716182151-XO49EAP9.json" 
+       target="_blank" class="footer-link">
+       🚀 ®Double-OH-Six 🚀
+    </a>
+  </p>
+</div>
+<script>
+  // ✅ Removed broken reference to #year
+  const arrow = document.getElementById('arrow');
+  const startBtn = document.getElementById('startBtn');
+  const discordWidget = document.querySelector('.discord-widget');
+  const botpressWidget = document.querySelector('.botpress-container');
+
+  let animating = false;
+  let cycle = 0;
+
+  function getCenter(el) {
+    const rect = el.getBoundingClientRect();
+    return {
+      x: rect.left + rect.width / 2 + window.scrollX,
+      y: rect.top + rect.height / 2 + window.scrollY
+    };
+  }
+
+  function moveArrowTo(x, y, angle, pause) {
+    arrow.style.left = `${x}px`;
+    arrow.style.top = `${y}px`;
+    arrow.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+    setTimeout(animateArrow, pause);
+  }
+
+  function animateArrow() {
+    if (!animating) return;
+
+    cycle = (cycle + 1) % 3;
+
+    if (cycle === 0) {
+      // Original target: Botpress widget (bottom-right)
+      const center = getCenter(botpressWidget);
+      moveArrowTo(center.x, center.y, 45, 4000);
+    } else if (cycle === 1) {
+      // Discord widget (bottom-left)
+      const center = getCenter(discordWidget);
+      moveArrowTo(center.x, center.y, 180, 4000);
+    } else {
+      // Start Chat button (center)
+      const center = getCenter(startBtn);
+      moveArrowTo(center.x, center.y, -45, 4000);
+    }
+  }
+
+  startBtn.addEventListener('click', () => {
+    animating = !animating;
+    if (animating) {
+      const center = getCenter(startBtn);
+      arrow.style.left = `${center.x}px`;
+      arrow.style.top = `${center.y}px`;
+      arrow.style.opacity = 1;
+      cycle = 2; // so it starts with Botpress next
+      animateArrow();
+    } else {
+      arrow.style.opacity = 0;
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (!animating) return;
+    animateArrow(); // recalculate positions
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    // --- Prologue Dropdown Logic ---
+    const prologueToggleBtn = document.getElementById('prologue-toggle-btn');
+    const prologueDropdownContainer = document.getElementById('prologue-dropdown-container');
+
+    prologueToggleBtn.addEventListener('click', () => {
+      prologueDropdownContainer.classList.toggle('open');
+      if (prologueDropdownContainer.classList.contains('open')) {
+        prologueToggleBtn.textContent = 'Hide Prologue';
+      } else {
+        prologueToggleBtn.textContent = 'Show Prologue';
+      }
+    });
+    const center = getCenter(startBtn);
+    arrow.style.left = `${center.x}px`;
+    arrow.style.top = `${center.y}px`;
+    arrow.style.opacity = 1;
+
+    // --- Smart Page Refresh Logic ---
+    let isPageActive = false;
+
+    // Listen for focus on any input element
+    document.addEventListener('focusin', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) {
+            isPageActive = true;
+        }
+    });
+    document.addEventListener('focusout', () => {
+        isPageActive = false;
+    });
+
+    // Set a flag if the mouse is over the botpress widget container
+    const botpressContainer = document.querySelector('.botpress-container');
+    if (botpressContainer) {
+        botpressContainer.addEventListener('mouseenter', () => isPageActive = true);
+        botpressContainer.addEventListener('mouseleave', () => isPageActive = false);
+    }
+
+    async function silentRefresh() {
+        if (isPageActive || document.visibilityState !== 'visible') {
+            return;
+        }
+
+        try {
+            const response = await fetch(window.location.href, { cache: 'no-store' });
+            const newHtml = await response.text();
+            const parser = new DOMParser();
+            const newDoc = parser.parseFromString(newHtml, 'text/html');
+
+            morphdom(document.body, newDoc.body, {
+                onBeforeElUpdated: function(fromEl, toEl) {
+                    if (fromEl.tagName === 'INPUT' || fromEl.tagName === 'TEXTAREA') {
+                        toEl.value = fromEl.value;
+                    }
+                    if (fromEl.classList.contains('botpress-container')) {
+                        return false;
+                    }
+                    return true;
+                }
+            });
+            console.log("Silent refresh complete.");
+        } catch (error) {
+            console.error('Silent refresh failed:', error);
+        }
+    }
+
+    setInterval(() => {
+        silentRefresh();
+    }, 150000);
+  });
+</script></body>
+</html>

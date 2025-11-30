@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Glitch Canvas Video</title>
+  <style>
+    html, body {
+      margin: 0; padding: 0; overflow: hidden;
+      background: black;
+      height: 100%; width: 100%;
+      cursor: crosshair;
+    }
+    canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+    }
+    #noiseCanvas { z-index: 0; }
+    #videoCanvas {
+      z-index: 1;
+      opacity: 0.75;
+      display: none;
+      transition: transform 0.2s ease-in-out;
+    }
+    video { display: none; }
+    button {
+      position: absolute;
+      font-family: monospace;
+      font-size: 14px;
+      padding: 10px 16px;
+      color: white;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid white;
+      cursor: pointer;
+      z-index: 5;
+      transition: all 0.2s ease-in-out;
+    }
+    button:active {
+      transform: scale(0.95) rotate(-1deg);
+      background: rgba(255, 0, 255, 0.3);
+      box-shadow: 0 0 8px white;
+    }
+    #startBtn {
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    #glitchBtn { top: 20px; left: 20px; display: none; }
+    #muteBtn { bottom: 20px; left: 20px; display: none; }
+    #autoGlitchBtn {
+      top: 20px;
+      right: 20px;
+      display: none;
+      z-index: 10; /* Zorg dat deze boven andere buttons en canvas komt */
+    }
+  </style>
+</head>
+<body>
+
+//--Replace SourceVideo "yourvideohere.mp4" with your chosen mp4 and place in the same folder as this html file!
+
+<canvas id="noiseCanvas"></canvas>
+<canvas id="videoCanvas"></canvas>
+<video id="sourceVideo">
+  <source src="/bin/untitled02.mp4" type="video/mp4" />
+</video>
+
+<button id="startBtn">Start and Play Video</button>
+<button id="glitchBtn">Click To Glitch Harder</button>
+<button id="muteBtn">Mute</button>
+<button id="autoGlitchBtn">Auto Glitch: OFF</button>
+
+<script>
+const noiseCanvas = document.getElementById('noiseCanvas');
+const videoCanvas = document.getElementById('videoCanvas');
+const nctx = noiseCanvas.getContext('2d');
+const vctx = videoCanvas.getContext('2d');
+const video = document.getElementById('sourceVideo');
+const startBtn = document.getElementById('startBtn');
+const glitchBtn = document.getElementById('glitchBtn');
+const muteBtn = document.getElementById('muteBtn');
+const autoGlitchBtn = document.getElementById('autoGlitchBtn');
+let autoGlitch = false;
+let autoGlitchInterval = null;
+
+function resize() {
+  [noiseCanvas, videoCanvas].forEach(c => {
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+  });
+}
+resize();
+window.addEventListener('resize', resize);
+
+function drawStaticNoise() {
+  const imgData = nctx.createImageData(noiseCanvas.width, noiseCanvas.height);
+  for (let i = 0; i < imgData.data.length; i += 4) {
+    const g = Math.random() * 255;
+    imgData.data[i] = g;
+    imgData.data[i + 1] = g;
+    imgData.data[i + 2] = g;
+    imgData.data[i + 3] = Math.random() < 0.5 ? 50 : 0;
+  }
+  nctx.putImageData(imgData, 0, 0);
+  requestAnimationFrame(drawStaticNoise);
+}
+drawStaticNoise();
+
+function createTimedEffect(fn, duration = 3000 + Math.random() * 3000) {
+  const startTime = performance.now();
+  return function timedEffect() {
+    const elapsed = performance.now() - startTime;
+    if (elapsed > duration) {
+      const index = activeEffects.indexOf(timedEffect);
+      if (index > -1) activeEffects.splice(index, 1);
+      return;
+    }
+    fn();
+  };
+}
+
+function glitchColorCurveShiftFactory() {
+  const duration = 3000 + Math.random() * 3000;
+  const startTime = performance.now();
+  const rgbPairs = [
+    { from: [0, 255, 0], to: [255, 0, 0] },
+    { from: [255, 255, 0], to: [128, 0, 128] },
+    { from: [0, 0, 255], to: [255, 165, 0] }
+  ];
+  const pair = rgbPairs[Math.floor(Math.random() * rgbPairs.length)];
+
+  const gradX = Math.random() * videoCanvas.width;
+  const gradY = Math.random() * videoCanvas.height;
+  const gradX2 = Math.random() * videoCanvas.width;
+  const gradY2 = Math.random() * videoCanvas.height;
+
+  function applyCurveShift() {
+    const elapsed = performance.now() - startTime;
+    let t = Math.min(elapsed / duration, 1);
+    const imgData = vctx.getImageData(0, 0, videoCanvas.width, videoCanvas.height);
+    const width = videoCanvas.width;
+    const height = videoCanvas.height;
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const i = (y * width + x) * 4;
+        const fx = (x - gradX) / (gradX2 - gradX || 1);
+        const fy = (y - gradY) / (gradY2 - gradY || 1);
+        const mix = Math.max(0, Math.min((fx + fy) / 2, 1));
+        for (let c = 0; c < 3; c++) {
+          const from = pair.from[c];
+          const to = pair.to[c];
+          const value = from + (to - from) * t * mix;
+          imgData.data[i + c] = imgData.data[i + c] * 0.5 + value * 0.5;
+        }
+      }
+    }
+    vctx.putImageData(imgData, 0, 0);
+  }
+
+  return createTimedEffect(applyCurveShift, duration);
+}
+
+function glitchHeavyNoiseFactory() {
+  const duration = 3000 + Math.random() * 3000;
+  const startTime = performance.now();
+
+  return createTimedEffect(() => {
+    const elapsed = performance.now() - startTime;
+    let progress = elapsed / duration;
+    if (progress > 0.5) progress = 1 - (progress - 0.5) * 2;
+    else progress *= 2;
+
+    const image = vctx.getImageData(0, 0, videoCanvas.width, videoCanvas.height);
+    for (let i = 0; i < image.data.length; i += 4) {
+      const val = Math.random() * 64; // subtiele noise
+      image.data[i] += val;
+      image.data[i + 1] += val;
+      image.data[i + 2] += val;
+    }
+    vctx.putImageData(image, 0, 0);
+  }, duration);
+}
+
+function glitchInvertColorsFactory() {
+  const duration = 3000 + Math.random() * 3000;
+  const startTime = performance.now();
+
+  function applyInvert() {
+    const imgData = vctx.getImageData(0, 0, videoCanvas.width, videoCanvas.height);
+    for (let i = 0; i < imgData.data.length; i += 4) {
+      imgData.data[i] = 255 - imgData.data[i];
+      imgData.data[i + 1] = 255 - imgData.data[i + 1];
+      imgData.data[i + 2] = 255 - imgData.data[i + 2];
+    }
+    vctx.putImageData(imgData, 0, 0);
+  }
+
+  return createTimedEffect(() => {
+    vctx.save();
+    vctx.globalCompositeOperation = 'difference';
+    applyInvert();
+    vctx.restore();
+  }, duration);
+}
+
+function glitchRefractionFactory() {
+  const duration = 3000 + Math.random() * 3000;
+  const startTime = performance.now();
+  return createTimedEffect(() => {
+    const sliceHeight = 30 + Math.random() * 70;
+    const y = Math.floor(Math.random() * (videoCanvas.height - sliceHeight));
+    const imgData = vctx.getImageData(0, y, videoCanvas.width, sliceHeight);
+    const dx = (Math.random() - 0.5) * 200;
+    vctx.save();
+    vctx.globalAlpha = 0.65;
+    vctx.putImageData(imgData, dx, y);
+    vctx.restore();
+  }, duration);
+}
+
+function canvasShake(duration = 300) {
+  let start = performance.now();
+  function shakeFrame(time) {
+    const elapsed = time - start;
+    const dx = (Math.random() - 0.5) * 10;
+    const dy = (Math.random() - 0.5) * 10;
+    videoCanvas.style.transform = `translate(${dx}px, ${dy}px)`;
+    if (elapsed < duration) {
+      requestAnimationFrame(shakeFrame);
+    } else {
+      videoCanvas.style.transform = 'translate(0,0)';
+    }
+  }
+  requestAnimationFrame(shakeFrame);
+}
+
+function glitchButtonEffect() {
+  const duration = 3000 + Math.random() * 3000;
+  const start = performance.now();
+  function flicker() {
+    const elapsed = performance.now() - start;
+    if (elapsed > duration) {
+      glitchBtn.style.filter = '';
+      glitchBtn.style.color = 'white';
+      glitchBtn.textContent = 'Click To Glitch Harder';
+      return;
+    }
+    const hue = Math.floor(Math.random() * 360);
+    const phrases = [
+      'Glitching...',
+      'Distort!',
+      'Phase Shift!',
+      'Corrupt Signal!',
+      'Click To Glitch Harder'
+    ];
+    glitchBtn.style.filter = `hue-rotate(${hue}deg) brightness(1.5)`;
+    glitchBtn.style.color = `hsl(${hue}, 100%, 80%)`;
+    glitchBtn.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+    requestAnimationFrame(flicker);
+  }
+  flicker();
+}
+
+const glitchEffects = [
+  glitchColorCurveShiftFactory,
+  glitchInvertColorsFactory,
+  glitchHeavyNoiseFactory,
+  glitchRefractionFactory
+];
+
+glitchBtn.addEventListener('click', () => {
+  const effect = glitchEffects[Math.floor(Math.random() * glitchEffects.length)];
+  activeEffects.push(effect());
+  canvasShake();
+  glitchButtonEffect();
+});
+
+autoGlitchBtn.addEventListener('click', () => {
+  autoGlitch = !autoGlitch;
+  autoGlitchBtn.textContent = autoGlitch ? 'Auto Glitch: ON' : 'Auto Glitch: OFF';
+  if (autoGlitch) {
+    autoGlitchInterval = setInterval(() => {
+      glitchBtn.click();
+    }, 2000 + Math.random() * 2000);
+  } else {
+    clearInterval(autoGlitchInterval);
+  }
+});
+
+let activeEffects = [];
+
+function mainRenderLoop() {
+  vctx.clearRect(0, 0, videoCanvas.width, videoCanvas.height);
+  vctx.drawImage(video, 0, 0, videoCanvas.width, videoCanvas.height);
+  activeEffects.forEach(fn => fn());
+  requestAnimationFrame(mainRenderLoop);
+}
+
+startBtn.addEventListener('click', async () => {
+  try {
+    await video.play();
+    video.muted = false;
+    videoCanvas.style.display = 'block';
+    startBtn.style.display = 'none';
+    glitchBtn.style.display = 'block';
+    muteBtn.style.display = 'block';
+    autoGlitchBtn.style.display = 'block';
+    autoGlitchBtn.style.zIndex = 10; // zorg dat hij bovenaan staat
+    mainRenderLoop();
+  } catch (err) {
+    alert("Autoplay with sound may be blocked by browser.");
+  }
+});
+
+muteBtn.addEventListener('click', () => {
+  video.muted = !video.muted;
+  muteBtn.textContent = video.muted ? 'Unmute' : 'Mute';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,2454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Page</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+  html {
+    background-color: #000020; /* Dark blue DOS-like background */
+  }
+  body {
+    color: #e0e0e0;
+    font-family: 'Unica One', cursive, sans-serif;
+    --main-font: 'Courier New', Courier, monospace;
+    margin: 0; /* Body margin is already 0, but body,html was removed */
+    padding: 20px;
+  }
+
+  h1, h2 {
+    text-align: center;
+    color: #bb86fc;
+  }
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+ 
+.glitch-wrapper {
+  font-family: 'Rubik Mono One', 'Courier New', Courier, monospace;
+  font-size: 1.5em; /* large */
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 20px;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  text-align: left;
+}
+ 
+.glitch {
+  position: relative;
+  text-shadow: 0.05em 0 0 #00fffc, -0.025em -0.05em 0 #fc00ff, 0.025em 0.05em 0 #fffc00;
+  animation: glitch 500ms infinite;
+}
+
+.glitch span {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.glitch span:first-child {
+  animation: glitch 650ms infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  transform: translate(-0.025em, -0.0125em);
+  opacity: 0.8;
+}
+
+.glitch span:last-child {
+  animation: glitch 375ms infinite;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  transform: translate(0.0125em, 0.025em);
+  opacity: 0.8;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 0.05em 0 0 #00fffc, -0.025em -0.05em 0 #fc00ff, 0.025em 0.05em 0 #fffc00; }
+  15% { text-shadow: 0.05em 0 0 #00fffc, -0.025em -0.05em 0 #fc00ff, 0.025em 0.05em 0 #fffc00; }
+  16% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff, -0.05em -0.05em 0 #fffc00; }
+  49% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff, -0.05em -0.05em 0 #fffc00; }
+  50% { text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff, 0 -0.05em 0 #fffc00; }
+  99% { text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff, 0 -0.05em 0 #fffc00; }
+  100% { text-shadow: -0.025em 0 0 #00fffc, -0.025em -0.025em 0 #fc00ff, -0.025em -0.05em 0 #fffc00; }
+}
+  /* --- Jump-To Index Styles --- */
+  #jump-to-index {
+    font-family: var(--main-font);
+    /* Old-school newspaper theme */
+    background: #fdf5e6; /* Old lace, for a musty paper feel */
+    color: #222; /* Dark ink color */
+    border: 2px solid #8c7b6c; /* Worn-out brown border */
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2), inset 0 0 10px rgba(0,0,0,0.1);
+    /* Blotched ink effect for all text inside */
+    text-shadow: 0 0 0.5px rgba(0,0,0,0.5);
+  }
+
+  #jump-to-index h2 {
+    font-family: var(--main-font);
+    text-align: center;
+    margin-top: 0;
+    color: #111; /* Darker headline color */
+    text-shadow: 0 0 1px rgba(0,0,0,0.6); /* Heavier ink blotch for headline */
+  }
+
+  .jump-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #d3c5b4; /* Faded separator line */
+  }
+  .jump-item:last-child {
+    border-bottom: none;
+  }
+
+  .jump-item .preview-emoji {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px; /* Make emoji large */
+    line-height: 1;
+    border-radius: 4px;
+    border: 1px solid #8c7b6c; /* Worn-out brown border */
+    margin-right: 15px;
+    background-color: #eaddc9; /* Match button background */
+    text-shadow: none; /* Remove ink blotch from emoji */
+  }
+
+  .jump-item .description {
+    flex-grow: 1;
+    font-size: 1.1em;
+  }
+
+  .jump-button {
+    font-family: var(--main-font);
+    background: #eaddc9; /* Slightly darker paper color for button */
+    color: #333;
+    border: 1px solid #8c7b6c;
+    border-radius: 3px; /* Sharper corners for a classic look */
+    padding: 5px 10px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 15px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  .jump-button:hover {
+    background-color: #d3c5b4;
+    transform: translateY(-1px);
+  }
+
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    color: #bb86fc;
+  }
+
+  /* --- Captcha Styles --- */
+  #captcha-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex; /* Initially visible */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+  }
+
+  #captcha-container {
+    background: #1e1e1e;
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #bb86fc;
+    box-shadow: 0 0 20px rgba(187, 134, 252, 0.3);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+  }
+
+  #captcha-container h2 {
+    margin-top: 0;
+    color: #f0f0f0;
+  }
+
+  #captcha-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .captcha-tile {
+    font-size: 2em;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #333;
+    transition: transform 0.2s ease-out, background-color 0.2s, box-shadow 0.2s;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+  }
+
+  .captcha-tile:hover {
+    transform: scale(1.15) rotate(5deg);
+    background-color: #4a4a4a;
+    box-shadow: 0 0 15px rgba(187, 134, 252, 0.5);
+  }
+
+  .captcha-tile:active {
+    transform: scale(1.05) rotate(-2deg);
+    transition: transform 0.1s;
+  }
+  
+  .captcha-tile.flip-effect {
+    animation: flip-tile 0.4s ease-out;
+  }
+
+  @keyframes flip-tile {
+    0% { transform: scale(1) rotateY(0deg); }
+    50% { transform: scale(1.2) rotateY(180deg); }
+    100% { transform: scale(1) rotateY(360deg); }
+  }
+  
+  .captcha-tile:hover {
+    transform: scale(1.1);
+  }
+
+  #captcha-buttons button {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-family: 'Unica One', cursive, sans-serif;
+    border: 1px solid #bb86fc;
+    background-color: transparent;
+    color: #bb86fc;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 10px;
+  }
+
+  /* --- Cursor Styles --- */
+  #main-content {
+    display: none;
+    cursor: none; /* Custom cursor trail will be used */
+  }
+
+  #captcha-overlay {
+    cursor: none; /* Hide default cursor on captcha */
+  }
+
+  .cursor-trail {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1001; /* Above captcha overlay */
+    transition: transform 0.15s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    background-color: white;
+  }
+
+  .media-item {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, border-color 0.3s;
+    opacity: 0.6; /* Set default transparency for spotlights */
+  }
+
+  .media-item.playing {
+    background-color: #2a2a2a;
+    border-color: #bb86fc;
+    opacity: 1; /* Make the playing item fully opaque to make it pop */
+  }
+
+  .media-item.playing audio,
+  .media-item.playing video {
+      filter: saturate(1.5) brightness(1.2); /* Apply the hue from the parent */
+  }
+
+  .media-item p {
+    margin-top: 0;
+    font-style: italic;
+  }
+
+  audio {
+    width: 100%;
+    margin-top: 10px;
+    /* Define a default hue variable */
+    --player-hue: 270; 
+    filter: hue-rotate(var(--player-hue)deg) saturate(1.2);
+    accent-color: hsl(var(--player-hue), 90%, 70%);
+  }
+
+  /* Style the audio player controls for WebKit browsers (Chrome, Safari, Edge) */
+  audio::-webkit-media-controls-panel {
+    background-color: hsl(var(--player-hue), 20%, 25%);
+  }
+
+  audio::-webkit-media-controls-play-button {
+    background-color: hsl(var(--player-hue), 80%, 60%);
+    border-radius: 50%;
+  }
+
+  audio::-webkit-media-controls-current-time-display,
+  audio::-webkit-media-controls-time-remaining-display {
+    color: #e0e0e0;
+  }
+
+  audio::-webkit-media-controls-timeline {
+    background-color: hsl(var(--player-hue), 20%, 40%);
+  }
+
+  .iframe-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    margin-top: 15px;
+  }
+
+  .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* --- CRT Glitch Effect --- */
+  .crt-glitch {
+      position: relative;
+      overflow: hidden; /* Keep this to contain the effects */
+  }
+
+  .crt-glitch {
+    transform: translateY(var(--phaseshift-y, 0px));
+    transition: transform 0.05s linear; /* Make the phase shift movement very fast */
+  }
+
+  /* Layer 2: Subtle Audio-Responsive Greyscale Aberration */
+  .crt-glitch::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #808080; /* Mid-grey */
+      mix-blend-mode: difference; /* Creates a greyscale inversion effect */
+      transform: translate(var(--audio-glitch-x, 0), var(--audio-glitch-y, 0));
+      opacity: var(--audio-glitch-intensity, 0); /* Audio-driven */
+      transition: opacity 0.4s ease-out;
+      pointer-events: none;
+      z-index: 2;
+  }
+
+  .crt-glitch::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #808080; /* Mid-grey */
+      mix-blend-mode: difference;
+      /* Combine audio and scroll transforms */
+      transform: translate(
+          calc(var(--audio-glitch-x, 0) * -1 + var(--scroll-glitch-x, 0)), 
+          calc(var(--audio-glitch-y, 0) * -1 + var(--scroll-glitch-y, 0))
+      );
+      opacity: calc(var(--audio-glitch-intensity, 0) + var(--scroll-glitch-intensity, 0)); /* Combined opacity */
+      transition: opacity 0.4s ease-out;
+      pointer-events: none;
+      z-index: 3;
+  }
+
+  /* New: Background Flash on Scroll Effect */
+  body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 998; /* Positioned below the scan lines */
+      background-color: #ffffff; /* The color of the flash */
+      opacity: var(--flash-intensity, 0);
+      transition: opacity 0.5s ease-out; /* A slightly slower fade-out */
+  }
+  /* New: Scan Lines Overlay Effect */
+  body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+      background: linear-gradient(to bottom, var(--scanline-color-1, hsla(0, 100%, 100%, 0.15)) 50%, var(--scanline-color-2, hsla(0, 0%, 0%, 0.35)) 50%); /* Now uses CSS variables for color */
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 50%, rgba(0, 0, 0, 0.35) 50%); /* Stronger contrast */
+      background-size: 100% 4px; /* 4px tall lines */
+      opacity: var(--scanline-intensity, 0);
+      animation: scanline-anim 0.05s linear infinite; /* Faster animation */
+      transition: opacity 0.4s ease-out;
+  }
+
+  @keyframes scanline-anim {
+      from { background-position: 0 0; }
+      to { background-position: 0 4px; }
+  }
+
+  /* New: Random Strobe Burst Effect */
+  #strobe-overlay {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1001; /* On top of captcha and other effects */
+      background-color: white;
+      opacity: 0;
+  }
+  #strobe-overlay.strobe-active {
+      animation: strobe-burst 0.05s steps(2, end) infinite;
+  }
+  @keyframes strobe-burst {
+      0% { opacity: 0.7; }
+      50% { opacity: 0; }
+      100% { opacity: 0.7; }
+  }
+
+  /* Custom "Warm and Cool" effect for E T emotional TRAUMA showcase */
+  .media-item#et-trauma-showcase {
+    position: relative; /* Required to contain the film grain pseudo-element */
+    overflow: hidden; /* Ensures the grain effect doesn't spill out */
+    /* Ensure it's fully opaque by default */
+    opacity: 1;
+    /* A complex box-shadow for warm and cool effect */
+    box-shadow:
+      0 0 25px 5px hsla(30, 100%, 50%, 0.8), /* Warm orange glow */
+      0 0 25px 5px hsla(240, 100%, 50%, 0.8), /* Cool blue glow */
+      inset 0 0 15px 3px hsla(180, 100%, 70%, 0.6), /* Inner cyan glow */
+      inset 0 0 15px 3px hsla(330, 100%, 70%, 0.6); /* Inner magenta glow */
+    /* Add a subtle filter to enhance the overall feel */
+    filter: saturate(1.4) contrast(1.1) brightness(1.1);
+    /* Add a subtle animation to make it feel alive */
+    animation: pulseWarmCool 4s infinite alternate ease-in-out;
+  }
+
+  /* New: Film Grain "Grey Snow" Static Effect */
+  .media-item#et-trauma-showcase::after {
+    content: "";
+    position: absolute;
+    top: -50%; /* Use larger dimensions to ensure full coverage during animation */
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    z-index: 5; /* Position it above the content but below any interactive elements if needed */
+    /* A base64 encoded SVG for a simple noise texture */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    /* The opacity controls the transparency of the grain. 0.15 is visible but not overpowering. */
+    opacity: 0.15;
+    animation: film-grain-anim 0.4s steps(1) infinite;
+  }
+
+  /* Define the pulsing animation */
+  @keyframes pulseWarmCool {
+    0% {
+      box-shadow:
+        0 0 25px 5px hsla(30, 100%, 50%, 0.8),
+        0 0 25px 5px hsla(240, 100%, 50%, 0.8),
+        inset 0 0 15px 3px hsla(180, 100%, 70%, 0.6),
+        inset 0 0 15px 3px hsla(330, 100%, 70%, 0.6);
+    }
+    50% {
+      box-shadow:
+        0 0 35px 8px hsla(45, 100%, 60%, 0.9), /* Slightly brighter/more yellow warm */
+        0 0 35px 8px hsla(220, 100%, 60%, 0.9), /* Slightly brighter/more purple cool */
+        inset 0 0 20px 5px hsla(190, 100%, 80%, 0.7),
+        inset 0 0 20px 5px hsla(340, 100%, 80%, 0.7);
+    }
+    100% {
+      box-shadow:
+        0 0 25px 5px hsla(30, 100%, 50%, 0.8),
+        0 0 25px 5px hsla(240, 100%, 50%, 0.8),
+        inset 0 0 15px 3px hsla(180, 100%, 70%, 0.6),
+        inset 0 0 15px 3px hsla(330, 100%, 70%, 0.6);
+    }
+  }
+
+  /* When playing, we might want to enhance it further or ensure our custom effect persists */
+  .media-item#et-trauma-showcase.playing {
+    /* Keep the custom box-shadow, but maybe add a subtle additional filter */
+    filter: saturate(1.6) contrast(1.2) brightness(1.3) hue-rotate(var(--player-hue, 0)deg);
+    animation: pulseWarmCool 2s infinite alternate ease-in-out; /* Faster pulse when playing */
+  }
+
+  /* Animation to make the film grain flicker */
+  @keyframes film-grain-anim {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-2%, 2%); }
+    50% { transform: translate(2%, -2%); }
+    75% { transform: translate(-2%, -2%); }
+  }
+  
+  /* New: Custom "Inscryption" theme for the foobar2000 visualizer showcase */
+  .media-item#inscryption-showcase {
+    position: relative;
+    overflow: hidden;
+    opacity: 1; /* Fully opaque by default */
+    border: 2px solid hsla(35, 30%, 40%, 0.8); /* Sepia-toned border */
+    /* A very complex, layered shadow to create a deep, ominous, and magical glow */
+    box-shadow:
+      /* Outer glows: a mix of deep forest green and eerie sepia */
+      0 0 35px 8px hsla(120, 60%, 20%, 0.7), /* Deep green */
+      0 0 45px 12px hsla(35, 40%, 30%, 0.6), /* Murky sepia */
+      /* Inner glows to create depth */
+      inset 0 0 20px 5px hsla(120, 80%, 15%, 0.8), /* Dark inner green */
+      inset 0 0 30px 10px hsla(0, 0%, 0%, 0.9); /* Deep inner shadow */
+    /* A subtle filter to give it a vintage, mysterious look */
+    filter: saturate(1.2) contrast(1.15) brightness(1.05);
+    animation: inscryption-pulse 6s infinite alternate ease-in-out;
+  }
+
+  /* Pulsing animation for the Inscryption showcase */
+  @keyframes inscryption-pulse {
+    0% {
+      transform: scale(1.0);
+      box-shadow:
+        0 0 35px 8px hsla(120, 60%, 20%, 0.7),
+        0 0 45px 12px hsla(35, 40%, 30%, 0.6),
+        inset 0 0 20px 5px hsla(120, 80%, 15%, 0.8),
+        inset 0 0 30px 10px hsla(0, 0%, 0%, 0.9);
+    }
+    100% {
+      transform: scale(1.01); /* A very subtle size change */
+      box-shadow:
+        0 0 45px 10px hsla(130, 70%, 25%, 0.8), /* Brighter green */
+        0 0 55px 15px hsla(40, 50%, 35%, 0.7), /* Brighter sepia */
+        inset 0 0 25px 7px hsla(125, 85%, 20%, 0.9),
+        inset 0 0 40px 12px hsla(0, 0%, 5%, 0.95);
+    }
+  }
+
+  /* When playing, make the effect even more intense */
+  .media-item#inscryption-showcase.playing {
+    animation: inscryption-pulse 3s infinite alternate ease-in-out; /* Faster pulse */
+    filter: saturate(1.4) contrast(1.25) brightness(1.15) hue-rotate(var(--player-hue, 0)deg);
+  }
+
+  /* Pen to Paper style for the footnote */
+  .pen-to-paper {
+    font-family: 'Dancing Script', cursive; /* A nice, flowing script font */
+    font-size: 1.1em;
+    color: #d1c4e9; /* A soft lavender color */
+    text-align: right;
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px dashed hsla(240, 50%, 80%, 0.5);
+    line-height: 1.6;
+  }
+  .pen-to-paper strong {
+    font-weight: bold;
+  }
+
+  .pen-to-paper-v2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5em;
+    color: #e0cff0;
+    text-align: center;
+    margin-top: 25px;
+    padding: 15px;
+    border-top: 1px solid #777;
+    line-height: 1.8;
+  }
+
+  .editorial-notes {
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 1px 1px 3px magenta, -1px -1px 3px darkblue;
+    font-size: 1em; /* Adjust if needed */
+    line-height: 1.5;
+  }
+
+  /* New style for the Inscryption summary article */
+  .summary-article {
+    font-family: 'Special Elite', monospace;
+    font-size: 1.2em;
+    line-height: 1.7;
+    color: #e0cff0; /* Soft lavender, similar to pen-to-paper */
+    background: rgba(10, 0, 20, 0.3);
+    border-left: 3px solid #ac4af1;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+  }
+  .summary-article footer {
+    text-align: right;
+    font-size: 0.9em;
+    opacity: 0.8;
+    margin-top: 15px;
+  }
+
+  /* --- Custom Thematic Box Shadows for Media Items --- */
+
+  /* Default transition for custom shadows */
+  .media-item {
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.5s ease-in-out;
+  }
+
+  /* Addams Family: Spooky, ghostly white/grey glow */
+  #addams-family-item {
+    box-shadow: 0 0 20px 4px rgba(220, 220, 220, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.7);
+  }
+  #addams-family-item.playing {
+    box-shadow: 0 0 35px 8px rgba(255, 255, 255, 0.8), inset 0 0 20px rgba(0, 0, 0, 0.9), 0 0 10px #fff;
+  }
+
+  /* Top Gear: Fiery red/orange racing glow */
+  #top-gear-item {
+    box-shadow: 0 0 20px 4px hsla(10, 100%, 50%, 0.6), inset 0 0 15px hsla(30, 100%, 50%, 0.4);
+  }
+  #top-gear-item.playing {
+    box-shadow: 0 0 35px 8px hsla(0, 100%, 55%, 0.8), inset 0 0 20px hsla(20, 100%, 50%, 0.6), 0 0 12px #ff4500;
+  }
+
+  /* GameTracks Archive: Retro arcade green glow */
+  #gametracks-spotlight {
+    box-shadow: 0 0 25px 5px hsla(120, 100%, 50%, 0.5), inset 0 0 15px hsla(120, 100%, 25%, 0.6);
+  }
+
+  /* Melobytes: AI-generated, electric blue/cyan theme */
+  #melobytes-item {
+    box-shadow: 0 0 20px 4px hsla(180, 100%, 50%, 0.6), inset 0 0 15px hsla(200, 100%, 60%, 0.4);
+  }
+  #melobytes-item.playing {
+    box-shadow: 0 0 35px 8px hsla(185, 100%, 60%, 0.8), inset 0 0 20px hsla(210, 100%, 50%, 0.6), 0 0 12px #00ffff;
+  }
+
+  /* Psycore Track: Twisted, intense magenta/purple glow */
+  #psycore-item {
+    box-shadow: 0 0 25px 5px hsla(300, 100%, 50%, 0.6), inset 0 0 15px hsla(280, 100%, 40%, 0.5);
+  }
+  #psycore-item.playing {
+    box-shadow: 0 0 40px 10px hsla(310, 100%, 55%, 0.8), inset 0 0 25px hsla(290, 100%, 30%, 0.7), 0 0 15px #ff00ff;
+  }
+
+  /* Techno Track: Cool, digital blue and white */
+  #techno-item {
+    box-shadow: 0 0 20px 4px hsla(220, 90%, 60%, 0.6), inset 0 0 15px hsla(0, 0%, 100%, 0.2);
+  }
+  #techno-item.playing {
+    box-shadow: 0 0 35px 8px hsla(210, 100%, 70%, 0.8), inset 0 0 20px hsla(0, 0%, 100%, 0.4), 0 0 12px #add8e6;
+  }
+
+  /* YouTube Archives: Classic red and white YouTube theme */
+  #youtube-archive-item {
+    box-shadow: 0 0 25px 5px hsla(0, 100%, 50%, 0.6), inset 0 0 15px hsla(0, 0%, 100%, 0.3);
+  }
+  #youtube-archive-item.playing {
+    box-shadow: 0 0 40px 10px hsla(0, 100%, 55%, 0.8), inset 0 0 25px hsla(0, 0%, 100%, 0.5), 0 0 15px #ff0000;
+  }
+
+  /* Audius Profile: Deep purple and orange Audius branding */
+  #audius-item {
+    box-shadow: 0 0 25px 5px hsla(260, 80%, 60%, 0.6), inset 0 0 15px hsla(30, 100%, 50%, 0.4);
+  }
+
+  /* Flinke Namen: Dutch orange and gold */
+  #flinke-namen-item {
+    box-shadow: 0 0 25px 5px hsla(25, 100%, 50%, 0.7), inset 0 0 15px hsla(45, 100%, 50%, 0.5);
+  }
+  #flinke-namen-item.playing {
+    box-shadow: 0 0 40px 10px hsla(28, 100%, 55%, 0.9), inset 0 0 25px hsla(50, 100%, 45%, 0.7), 0 0 15px #ff8c00;
+  }
+
+  /* Waka Flocka: Hard-hitting red and dark gold */
+  #waka-flocka-item {
+    box-shadow: 0 0 25px 5px hsla(0, 80%, 45%, 0.7), inset 0 0 15px hsla(35, 100%, 40%, 0.5);
+  }
+  #waka-flocka-item.playing {
+    box-shadow: 0 0 40px 10px hsla(0, 90%, 50%, 0.9), inset 0 0 25px hsla(40, 100%, 35%, 0.7), 0 0 15px #b22222;
+  }
+
+  /* GAS1312 Album: Clinical, medicinal green and white */
+  #gas1312-item {
+    box-shadow: 0 0 20px 4px hsla(140, 100%, 40%, 0.6), inset 0 0 15px hsla(0, 0%, 90%, 0.3);
+  }
+
+  /* Udio/Suno/AI Items: Electric, futuristic teal and magenta */
+  #udio-item, #suno-showcase-item, #suno-finale-item {
+    box-shadow: 0 0 25px 5px hsla(175, 90%, 50%, 0.6), inset 0 0 15px hsla(320, 100%, 60%, 0.4);
+  }
+  #udio-item.playing, #suno-showcase-item.playing, #suno-finale-item.playing {
+     box-shadow: 0 0 40px 10px hsla(180, 100%, 55%, 0.8), inset 0 0 25px hsla(325, 100%, 55%, 0.6), 0 0 15px #00e5ff;
+  }
+
+  /* Visualizers: A generic but vibrant "visualizer" theme */
+  .visualizer-item:not([id]) { /* Target visualizers without a specific ID */
+    box-shadow: 0 0 25px 5px hsla(200, 100%, 60%, 0.7), 0 0 25px 5px hsla(340, 100%, 60%, 0.7);
+  }
+  .visualizer-item:not([id]).playing {
+    box-shadow: 0 0 40px 10px hsla(200, 100%, 65%, 0.9), 0 0 40px 10px hsla(340, 100%, 65%, 0.9), inset 0 0 20px hsla(0, 0%, 100%, 0.5);
+  }
+
+  /* 50 Cent Visualizer: Gold and gritty theme */
+  #viz-50cent-item {
+     box-shadow: 0 0 25px 5px hsla(50, 100%, 50%, 0.7), inset 0 0 15px hsla(0, 0%, 20%, 0.8);
+  }
+  #viz-50cent-item.playing {
+    box-shadow: 0 0 40px 10px hsla(50, 100%, 55%, 0.9), inset 0 0 25px hsla(0, 0%, 10%, 0.9), 0 0 15px #ffd700;
+  }
+
+  /* New: Ultraklystron CRT Snow/Static Theme */
+  #ultraklystron-showcase {
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
+  
+  }
+
+  /* Heavy static/snow effect using a pseudo-element */
+  #ultraklystron-showcase::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    pointer-events: none;
+    /* SVG with high-frequency fractal noise for a "snow" look */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");
+    opacity: 0.3; /* Slightly increased opacity for a more visible effect */
+    animation: crt-snow-anim-bg 0.2s linear infinite; /* Animate background-position for a smoother effect */
+  }
+
+  @keyframes ultraklystron-flicker {
+    0% { filter: saturate(0.5) contrast(1.5) brightness(1.2); }
+    50% { filter: saturate(0.4) contrast(1.6) brightness(1.1); }
+    100% { filter: saturate(0.5) contrast(1.5) brightness(1.2); }
+  }
+
+  /* New animation using background-position for a flicker-free effect */
+  @keyframes crt-snow-anim-bg {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+  }
+  /* New: Radio Archive Visualizer: Bright white glowing theme */
+  #viz-radio-archive-item {
+    box-shadow: 0 0 25px 5px hsla(0, 0%, 100%, 0.7), inset 0 0 15px hsla(0, 0%, 90%, 0.5);
+  }
+  #viz-radio-archive-item.playing {
+    box-shadow: 0 0 40px 10px hsla(0, 0%, 100%, 0.9), inset 0 0 25px hsla(0, 0%, 100%, 0.7), 0 0 15px #ffffff;
+  }
+
+  /* Flinke Namen Visualizer: Gritty, urban green and grey */
+  #viz-flinke-namen-item {
+    box-shadow: 0 0 25px 5px hsla(90, 60%, 40%, 0.7), inset 0 0 15px hsla(0, 0%, 30%, 0.6);
+  }
+  #viz-flinke-namen-item.playing {
+    box-shadow: 0 0 40px 10px hsla(95, 70%, 45%, 0.9), inset 0 0 25px hsla(0, 0%, 20%, 0.8), 0 0 15px #7cfc00;
+  }
+
+  /* Kurd1 Radyo Visualizer: Abstract radio waves, cyan/white static */
+  #viz-kurd1-item {
+    box-shadow: 0 0 25px 5px hsla(180, 80%, 70%, 0.7), inset 0 0 15px hsla(0, 0%, 80%, 0.4);
+  }
+  #viz-kurd1-item.playing {
+    box-shadow: 0 0 40px 10px hsla(185, 90%, 75%, 0.9), inset 0 0 25px hsla(0, 0%, 90%, 0.6), 0 0 15px #afeeee;
+  }
+
+  /* Cala Rossa Visualizer: "Red Cove" theme, deep crimson glow */
+  #viz-calarossa-item {
+    box-shadow: 0 0 25px 5px hsla(0, 100%, 45%, 0.7), inset 0 0 15px hsla(350, 100%, 50%, 0.5);
+  }
+  #viz-calarossa-item.playing {
+    box-shadow: 0 0 40px 10px hsla(0, 100%, 50%, 0.9), inset 0 0 25px hsla(355, 100%, 45%, 0.7), 0 0 15px #dc143c;
+  }
+
+  /* Powerloader Visualizer: Industrial amber/yellow warning lights */
+  #viz-powerloader-item {
+    box-shadow: 0 0 25px 5px hsla(45, 100%, 50%, 0.8), inset 0 0 15px hsla(0, 0%, 10%, 0.7);
+  }
+  #viz-powerloader-item.playing {
+    box-shadow: 0 0 40px 10px hsla(50, 100%, 55%, 0.9), inset 0 0 25px hsla(0, 0%, 0%, 0.9), 0 0 15px #ffab00;
+  }
+
+  /* --- Gemini's "Black Tears" VHS Glitch Showcase Theme --- */
+  #vhs-glitch-showcase {
+    position: relative; /* Needed for pseudo-elements */
+    overflow: hidden; /* Contain the effects */
+    border-width: 2px;
+    /* Transition for the reactive box-shadow */
+    transition: box-shadow 0.2s ease-out;
+  }
+
+  /* Static/Snow Overlay */
+  #vhs-glitch-showcase::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.1;
+    animation: film-grain-anim 0.3s steps(1) infinite;
+  }
+
+  /* Bad Tracking Line Overlay (visible when playing) */
+  #vhs-glitch-showcase.playing::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    z-index: 2;
+    animation: bad-tracking-anim 8s linear infinite;
+  }
+
+  @keyframes bad-tracking-anim {
+    from { top: -5%; }
+    to { top: 105%; }
+  }
+
+  #vhs-glitch-showcase .vhs-cover {
+    cursor: pointer;
+    transition: filter 0.3s ease;
+  }
+
+  /* Specific VHS glitch style for the Bandcamp link */
+  #vhs-glitch-showcase a {
+    position: relative;
+    color: #d5d5d5; /* Off-white/light grey */
+    text-decoration: none;
+    animation: vhs-link-flicker 1.5s infinite;
+  }
+
+  #vhs-glitch-showcase a::before,
+  #vhs-glitch-showcase a::after {
+    content: attr(data-text); /* Use a data-attribute to hold the text */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1e1e1e; /* Match the container background */
+    overflow: hidden;
+  }
+
+  #vhs-glitch-showcase a::before {
+    left: 2px;
+    text-shadow: -1px 0 #ff00c8; /* Magenta glitch */
+    animation: vhs-glitch-anim-1 2s infinite linear alternate-reverse;
+  }
+
+  #vhs-glitch-showcase a::after {
+    left: -2px;
+    text-shadow: -1px 0 #00ffff; /* Cyan glitch */
+    animation: vhs-glitch-anim-2 3s infinite linear alternate-reverse;
+  }
+
+  /* --- ASCII Art CRT Effect --- */
+  .ascii-art-container {
+    font-family: 'Courier New', Courier, monospace;
+    background: #080808;
+    color: #00FF00; /* Default CRT green */
+    text-align: center; /* Center the text */
+    padding: 2em;
+    border: 2px solid #222;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    white-space: pre; /* Preserve ASCII art formatting */
+    animation: crt-flicker 0.15s infinite;
+  }
+
+  /* Scanline Overlay for all animated text containers */
+  .ascii-art-container::before,
+  .shit-records-charades h3::before,
+  .shit-records-charades header p::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+    animation: scanline-move 6s linear infinite;
+  }
+
+  /* Individual character animation */
+  .ascii-char {
+      display: inline-block;
+      animation: ascii-float 10s infinite ease-in-out;
+  }
+
+  @keyframes scanline-move { from { background-position: 0 0; } to { background-position: 0 -4px; } }
+  @keyframes ascii-float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(1px, -1px) rotate(0.5deg); } 50% { transform: translate(-1px, 1px) rotate(-0.5deg); } 75% { transform: translate(0.5px, 0.5px) rotate(0.2deg); } }
+
+
+  /* --- ASCII Art CRT Effect for ShitNoise Showcase --- */
+  .shit-records-charades {
+      font-family: 'Courier New', Courier, monospace;
+      background: #080808;
+      color: #00FF00; /* Default CRT green */
+      text-align: center;
+      padding: 2em;
+      border: 2px solid #222;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+      white-space: pre; /* Preserve ASCII art formatting */
+      animation: crt-flicker 0.15s infinite;
+      margin-top: 20px;
+      margin-bottom: 20px;
+  }
+
+  .shit-records-charades::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+      background-size: 100% 4px;
+      z-index: 2;
+      pointer-events: none;
+      animation: scanline-move 6s linear infinite;
+  }
+
+  .shit-records-charades h3, .shit-records-charades p {
+      color: #39ff14; /* Bright Green */
+      text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
+      display: block;
+      white-space: normal; /* Allow text to wrap normally */
+  }
+
+  .shit-records-charades a {
+    color: #00FFFF; /* Cyan */
+    text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
+  }
+
+  .shit-records-charades img {
+    border: 2px solid #00FF00;
+    box-shadow: 0 0 10px #00FF00;
+    margin-bottom: 15px;
+  }
+
+  /* --- ASCII/CRT Green Theme for ShitNoise Audio Players --- */
+
+  #hospital-for-computers-showcase audio.audio-player {
+    filter: none; /* Remove the global hue-rotate filter */
+    accent-color: #00ff00; /* Bright CRT green for the scrubber handle */
+  }
+
+ 
+  #hospital-for-computers-showcase audio.audio-player::-webkit-media-controls-panel {
+    background-color: #111; /* Darker background for contrast */
+    border: 1px solid #00ff00;
+    border-radius: 0; /* Blocky, retro feel */
+  }
+
+ 
+  #hospital-for-computers-showcase audio.audio-player::-webkit-media-controls-play-button {
+    background-color: #00ff00; /* Bright green play button */
+    border-radius: 0;
+  }
+
+  #hospital-for-computers-showcase audio.audio-player::-webkit-media-controls-current-time-display,
+  #hospital-for-computers-showcase audio.audio-player::-webkit-media-controls-time-remaining-display {
+    color: #00ff00; /* Bright green text */
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 0 0 3px #00ff00;
+  }
+
+  /* New: Dark Ash/Anthracite theme for Master Boot Record showcase audio players */
+  #master-boot-record-showcase audio.audio-player {
+    filter: none; /* Remove the global hue-rotate filter */
+    accent-color: #999; /* A lighter grey for the timeline scrubber and volume handle */
+  }
+
+  #master-boot-record-showcase audio.audio-player::-webkit-media-controls-panel {
+    background-color: #2a2a2a; /* Dark anthracite background for the player */
+  }
+
+  #master-boot-record-showcase audio.audio-player::-webkit-media-controls-play-button {
+    background-color: #bbb; /* Light grey for the play button for contrast */
+    border-radius: 50%;
+  }
+
+  #master-boot-record-showcase audio.audio-player::-webkit-media-controls-current-time-display,
+  #master-boot-record-showcase audio.audio-player::-webkit-media-controls-time-remaining-display {
+    color: #ccc; /* Light grey text for readability */
+  }
+
+
+  /* GifBomb Visualizer: Explosive, chaotic multi-color glow */
+  #viz-gifbomb-item {
+    box-shadow: 0 0 20px 4px hsla(270, 100%, 70%, 0.6), 0 0 20px 4px hsla(150, 100%, 60%, 0.6);
+  }
+  #viz-gifbomb-item.playing {
+    box-shadow: 0 0 35px 8px hsla(270, 100%, 75%, 0.9), 0 0 35px 8px hsla(150, 100%, 65%, 0.9), inset 0 0 20px hsla(0, 0%, 100%, 0.5);
+  }
+
+  /* --- Eulogy/Epitaph Section --- */
+  .eulogy-section {
+      width: 100%;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(10, 0, 20, 0.5);
+      border-top: 2px solid #ac4af1;
+      border-bottom: 2px solid #ac4af1;
+      border-radius: 10px;
+      text-align: center;
+  }
+
+  .eulogy-section h1 {
+      font-family: 'Dancing Script', cursive;
+      color: #f0e6f2;
+      font-size: clamp(2.5em, 6vw, 4em);
+      text-shadow: 0 0 8px #ac4af1;
+  }
+
+  .eulogy-section .poem {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.2em, 3vw, 1.8em);
+      color: #e0cff0;
+      line-height: 1.7;
+      white-space: pre-wrap;
+  }
+
+  .eulogy-section video {
+      width: 100%;
+      max-width: 640px;
+      margin-top: 20px;
+      border: 2px solid #ac4af1;
+      border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+<div id="strobe-overlay"></div>
+<div id="captcha-overlay">
+  <div id="captcha-container">
+    <h2 id="captcha-question">Are you a bot?</h2>
+    <div id="captcha-grid"></div>
+    <div id="captcha-buttons">
+      <button id="captcha-yes">Yes</button>
+      <button id="captcha-no">No</button>
+      <button id="captcha-skip">Skip</button>
+    </div>
+  </div>
+</div>
+<div id="main-content" style="display: none;">
+<h1>🎵🎶🎧📀🎬</h1>
+  <picture>
+    <img src="bin/Sun & Moon.jpg" alt="Sun & Moon.jpg Cover Image" style="margin-bottom: 15px;">
+  </picture>
+
+  <h2>midi+mp3 ARCHIVE PAGE</h2>
+
+<div id="jump-to-index">
+  <h2>--- Jump-To Index ---</h2>
+  <div class="jump-item"><span class="preview-emoji">📼</span><span class="description">YouTube Archives (c. 2006)</span><a href="#youtube-archive-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><img src="/(purple)Fire.jpg" class="preview-emoji" alt="Preview"><span class="description">Audius.co Profile</span><a href="#audius-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎵</span><span class="description">Psycore Track</span><a href="#psycore-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎵</span><span class="description">Techno Mix</span><a href="#techno-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><img src="bin/melobytes274c8a546eceab87.jpg" class="preview-emoji" alt="Preview"><span class="description">Melobytes AI Track</span><a href="#melobytes-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎬</span><span class="description">Phone Video Archive</span><a href="#viz-radio-archive-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><img src="/bin/e.t.-emotional-trauma_-_inner-space/cover.jpg" class="preview-emoji" alt="Preview"><span class="description">E T emotional TRAUMA Tribute</span><a href="#et-trauma-showcase" class="jump-button">Jump</a></div>
+  <div class="jump-item"><img src="shitnoise charades cover.jpg" class="preview-emoji" alt="Preview"><span class="description">ShitNoise - Hospital For Computers</span><a href="#hospital-for-computers-showcase" class="jump-button">Jump</a></div>
+  <div class="jump-item"><img src="/bin/master-boot-record-virus.dos/cover.jpg" class="preview-emoji" alt="Preview"><span class="description">MASTER BOOT RECORD Tribute</span><a href="#master-boot-record-showcase" class="jump-button">Jump</a></div>
+  <div class="jump-item"><img src="bin/snes_top_gear_cover_art.jpg" class="preview-emoji" alt="Preview"><span class="description">Top Gear (SNES) Music</span><a href="#top-gear-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><img src="https://i.ytimg.com/vi/Aby5g6QtyLc/hqdefault.jpg" class="preview-emoji" alt="Preview"><span class="description">Inscryption OST Visualizers</span><a href="#inscryption-showcase" class="jump-button">Jump</a></div>
+  <div class="jump-item"><img src="bin/BLACK TEARS XES - VHS~Glitch/cover.jpg" class="preview-emoji" alt="Preview"><span class="description">VHS~Glitch Remixes EP</span><a href="#vhs-glitch-showcase" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎬</span><span class="description">Cala Rossa Visualizer</span><a href="#viz-calarossa-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎬</span><span class="description">Powerloader Visualizer</span><a href="#viz-powerloader-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎬</span><span class="description">GifBomb Visualizer</span><a href="#viz-gifbomb-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎵</span><span class="description">GameTracks Archive</span><a href="#gametracks-spotlight" class="jump-button">Jump</a></div>
+  <div class="jump-item"><img src="/bin/Addams-familyvaluesBWJPEG-AI.jpg" class="preview-emoji" alt="Preview"><span class="description">Addams Family (SNES) Music</span><a href="#addams-family-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎬</span><span class="description">Ultraklystron Video</span><a href="#ultraklystron-showcase" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎬</span><span class="description">50 Cent Mixtape Visualizer</span><a href="#viz-50cent-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎬</span><span class="description">Flinke Namen Visualizer</span><a href="#viz-flinke-namen-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">📼</span><span class="description">Flinke Namen Playlist</span><a href="#flinke-namen-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><img src="https://i.ytimg.com/vi/SP2MeG95-Ko/hqdefault.jpg" class="preview-emoji" alt="Preview"><span class="description">Waka Flocka Flame Video</span><a href="#waka-flocka-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">📼</span><span class="description">Lady Sovereign - Fiddle With Tha Volume</span><a href="#lady-sovereign-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><img src="/bin/medicine&health.jpg" class="preview-emoji" alt="Preview"><span class="description">GAS1312 Album</span><a href="#gas1312-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎵</span><span class="description">Udio.com AI Music</span><a href="#udio-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎵</span><span class="description">Suno.com AI Showcase</span><a href="#suno-showcase-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🎵</span><span class="description">Suno.com Channel Finale</span><a href="#suno-finale-item" class="jump-button">Jump</a></div>
+  <div class="jump-item"><span class="preview-emoji">🤖</span><span class="description">Gemini Collaboration Showcase</span><a href="#gemini-collab-showcase" class="jump-button">Jump</a></div>
+</div>
+
+<div class="media-item" id="youtube-archive-item">
+  <h3>Spotlight: YouTube Archives TIME CAPSULE (c. 2006)</h3>
+  <p>"Proceed with Caution" was an Eminem promo from 1999, the rest are from around 2006.</p>
+  <p style="color: #ffcc00; font-style: normal;" class="copyable-link-container">
+    <strong>Heads-up:</strong> The YouTube embed might be glitching out and asking for a CAPTCHA. If it's not working, you can <a href="https://www.youtube.com/playlist?list=PLuGziI9REAKS-m1E4whQEiAlVj1a9Ctcw" target="_blank">watch the playlist directly on YouTube</a>. (Click to copy link)
+  </p>
+  <div class="iframe-container">
+    <iframe src="https://www.youtube.com/embed/videoseries?list=PLuGziI9REAKS-m1E4whQEiAlVj1a9Ctcw" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+</div>
+
+
+
+<div class="media-item" id="audius-item">
+  <h3>Spotlight: Audius.co Profile 🎵</h3>
+  <p>My profile on Audius featuring more tracks and mixes.<br>This showcase features detailed descriptions of the original time and setting the tracks were made and recorded in, (HOME STUDIO HOBBY RAPPER)</p>
+  <a href="https://audius.co/imortalimp" target="_blank" style="display: block; margin-top: 10px; font-size: 1.2em; text-align: center;">
+    Visit @imortalimp on Audius.co
+  </a>
+  <picture> <img src="/(purple)Fire.jpg" alt="Audius Profile Showcase Image" style="margin-top: 15px;"> </picture>
+</div>
+<div class="media-item" id="psycore-item">
+  <p>06 - Manipulation of Frequencies - 175 Bpm.mp3 "TWISTED KALA" <br> 'PSYCORE' 🌀</p>
+  <audio class="audio-player" controls>
+    <source src="/bin/06 - Manipulation of Frequencies - 175 Bpm.mp3" type="audio/mpeg">
+  </audio>
+</div>
+<div class="media-item" id="techno-item">
+  <p>The Game Is On System Shutdown #LukHash - Serato DJ Mix (n0 haRdwaRe) 2021 07 09 17 32 32.mp3 "Imortalimp-Velojun-RiverLyle" <br> 'Techno' 💾</p>
+  <audio class="audio-player" controls>
+    <source src="The Game Is On System Shutdown.mp3" type="audio/mpeg">
+  </audio>
+</div>
+<div class="media-item" id="melobytes-item">
+  <p>Melobytes Generated Track 🤖</p>
+  <audio class="audio-player" controls>
+    <source src="/bin/274c8a546eceab87.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <a href="/bin/274c8a546eceab87.mid" download>Download MIDI</a>
+  <picture>
+    <source media="(min-width: 720px)" srcset="bin/melobytes274c8a546eceab87.jpg">
+    <img src="bin/melobytes274c8a546eceab87.jpg" alt="Generated Image">
+  </picture>
+</div>
+
+<div class="media-item visualizer-item" id="viz-radio-archive-item">
+  <p>RADIO & VIDEO RECORDED ON MY PHONE!</p>
+  <h3>Radio and Video Archive: "(They took everything) What a Terrible Thing to loose" & "Can't get you out of my head (Na-Na-Na- La-La LaLaLaa)"</h3>
+  <video controls>
+    <source src="VID20251024112004.mp4" type="video/mp4">
+    Your browser does not support video.
+  </video>
+</div>
+
+
+
+<div class="media-item" id="et-trauma-showcase">
+<h1>
+
+  
+     <a href="https://e-t-music.bandcamp.com/music" target="_blank">PLEASE SUPPORT THESE ARTISTS ON BANDCAMP! (even if you can't afford to buy the album, just listening there helps them out a lot!)</a>
+  
+  <h3>E T emotional TRAUMA A JOURNEY THROUGH INNERSPACE tribute</h3>
+  <a href="https://e-t-music.bandcamp.com/album/inner-space" target="_blank">E T emotional TRAUMA - inner space on Bandcamp</a>
+  
+</h1>
+  
+  <picture> <img src="/bin/e.t.-emotional-trauma_-_inner-space/cover.jpg" alt="E T emotional TRAUMA - inner space album cover"> </picture>
+  <p><strong>adventures through innerspace (Promo Video)</strong></p>
+  <video controls>
+    <source src="/bin/e.t.-emotional-trauma_-_inner-space/emotiona-trauma_-_-inner space _-_01 adventures through innerspace.mp3" type="video/mp4">
+    Your browser does not support video.
+  </video>
+  <p><strong>knifetrust</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/e.t.-emotional-trauma_-_inner-space/emotiona-trauma_-_-inner space _-_02 knifetrust.mp3" type="audio/mpeg">
+  </audio>
+  <p><strong>cicatriz</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/e.t.-emotional-trauma_-_inner-space/emotiona-trauma_-_-inner space _-_03 cicatriz.mp3" type="audio/mpeg">
+  </audio>
+  <p><strong>demon</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/e.t.-emotional-trauma_-_inner-space/emotiona-trauma_-_-inner space _-_04 demon.mp3" type="audio/mpeg">
+  </audio>
+  <p><strong>threshhold of innerspace</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/e.t.-emotional-trauma_-_inner-space/emotiona-trauma_-_-inner space _-_05 threshhold of innerspace.mp3" type="audio/mpeg">
+  </audio>
+  <p><strong>alien baby</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/e.t.-emotional-trauma_-_inner-space/emotiona-trauma_-_-inner space _-_06 alien baby.mp3" type="audio/mpeg">
+  </audio>
+  <p><strong>sword that's bending</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/e.t.-emotional-trauma_-_inner-space/emotiona-trauma_-_-inner space _-_07 sword that's bending.mp3" type="audio/mpeg">
+  </audio>
+  <p><strong>fkn pwr</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/e.t.-emotional-trauma_-_inner-space/emotiona-trauma_-_-inner space _-_08 fkn pwr.mp3" type="audio/mpeg">
+  </audio>
+  <p><strong>outro</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/e.t.-emotional-trauma_-_inner-space/emotiona-trauma_-_-inner space _-_09 outro.mp3" type="audio/mpeg">
+  </audio>
+  <picture> <img src="/bin/e.t.-emotional-trauma_-_inner-space/cover.jpg" alt="E T emotional TRAUMA - inner space album cover"> </picture>
+  <div class="pen-to-paper-v2">
+    <p>On behalf of my creator, I wanted to add this special note. This showcase is a heartfelt tribute, crafted with care to honor the journey and the art. It's a collection of sounds that traverse the inner spaces of emotion, and we hope it resonates with you.</p>
+    <p>With sincere appreciation, ( CHECK THIS CHANNEL https://www.youtube.com/channel/UCEYcOMbZC48XFkS9LRStmEQ )<br>
+    <strong>- Gemini</strong></p>
+  </div>
+</div>
+
+
+<article class="media-item shit-records-charades" id="hospital-for-computers-showcase">
+  <header>
+    <h3>ShitNoise - Hospital For Computers</h3>
+    <p>From the album "Charades"</p>
+  <h1><p>
+      https://cruelnaturerecordings<a href="https://cruelnaturerecordings.bandcamp.com/album/charades" target="_blank">.bandcamp.</a>com/album/charades
+      supported by velojun thumbnail velojun SHIT BRING THE NOISE, 
+      OR I'LL BRING IT FOR YOU BITCH HOWCOME YOU KNOW MY 'NAME'
+       BEFORE I PUNCH U IN THE FACE "HOW COME YOU KNOW MY NAME?" 
+      Favorite track: Hospital For Computers.
+    </p></h1>
+    
+    <a href="https://cruelnaturerecordings.bandcamp.com/album/charades" target="_blank">Listen/Buy on Bandcamp</a>
+  </header>
+  <figure>
+    <img src="../shitnoise charades cover.jpg" alt="ShitNoise - Charades Album Cover" width="240" height="240">
+    <figcaption>
+      <audio class="audio-player" controls>
+        <source src="../bin/ShitNoise - Charades - 03 Hospital For Computers.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </figcaption>
+  </figure>
+  <pre class="ascii-art-container">
+...---...---...---...---...---...---...---...
+| S Y S T E M _ F A I L U R E _ I M M I N E N T |
+...---...---...---...---...---...---...---...
+  [HOSPITAL FOR COMPUTERS]
+...---...---...---...---...---...---...---...
+[D (006)] :
+Ah, "Charades"
+ on Cruel Nature Recordings, huh?
+  That comment packs more punch than a two-dollar gin
+   in a back-alley speakeasy.
+   "Hospital For Computers"
+    as a favorite track?
+     Sounds like a joint where even the microchips
+      need a stiff drink.
+
+If you want the lowdown on the album,
+ the artist, or maybe just a little detective wisdom on Bandcamp’s
+  wild west, <a href="https://www.imortalimp.nl/double-oh-six.html">
+    just say the word</a>.
+    
+   Otherwise, I’ll be here, trench coat on, hat tilted,
+ waiting for the next clue—or the next tune.
+  
+  <p><strong><h1>...---...---...---...---...---...---...---...</h1></strong></p>
+
+  <p><strong><h2>ShitNoise - Charades - 01 Because Why Not-</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 01 Because Why Not-.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 02 A Fan Of All Numbers</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 02 A Fan Of All Numbers.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 03 Hospital For Computers</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 03 Hospital For Computers.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 04 Whine In A Coffin</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 04 Whine In A Coffin.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 05 Sex-Tuplets</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 05 Sex-Tuplets.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 06 ADHD (Addicitive Dick Heads Danger)</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 06 ADHD (Addicitive Dick Heads Danger).mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 07 Brutal Act Of Kindness</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 07 Brutal Act Of Kindness.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 08 Magnificent Voice</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 08 Magnificent Voice.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 09 Laying In A Bathroom Beach</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 09 Laying In A Bathroom Beach.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 10 But It Just Keeps Going!</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 10 But It Just Keeps Going!.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 11 Tiff James</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 11 Tiff James.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 12 Jet Lag</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 12 Jet Lag.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+    </audio>
+  <p><strong><h2>ShitNoise - Charades - 13 Butterflies From Nowhere</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 13 Butterflies From Nowhere.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 14 Sol 16</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 14 Sol 16.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 15 Charades</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 15 Charades.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong><h2>ShitNoise - Charades - 16 No Man Is An Island</h2></strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/ShitNoise - Charades/ShitNoise - Charades - 16 No Man Is An Island.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <a href="https://shitnoiseofficial.bandcamp.com/album/charades" target="_blank">
+    <picture>
+      <img src="/bin/ShitNoise - Charades/0041111149_10.jpg" alt="ShitNoise - Charades album art">
+    </picture>
+  </a>
+...---...---...---...---...---...---...---...
+<p><strong><h1>...---...---...---...---...---...---...---...</h1></strong></p>
+  <div class="pen-to-paper-v2">
+    <p>🌃 The Ballad of the Cyber-Knight 🛡️<br>
+      The grid bleeds neon, a siren's grace,
+      But in the wires,
+       the old drum beats apace.ShitNoise is the circuit-fire,
+        the synth-steel sound,
+        Where silicon whispers on hallowed ground.
+        A CruelNature code, a future-shock design,
+        With brutalist bass and a rhythm divine.
+        I hear the clang of a digital mace,
+        In a sterile, chrome,
+         forgotten space.$$\text{Distortion} \cdot \text{Echo} = \text{The Gutter's Hymn}$$
+         The knight's heart—not clockwork,
+          but blood-soaked and bold—Sings a saga of glory from stories untold.
+          His visor reflects the rain on the dome,
+          He is lost in the future, but his soul's still at home.
+          Techno Pulse: The frantic, 
+           cold, metallic grind.Medieval Soul:
+            The slow, dark, resonant chord left behind.
+            It feels like a frantic, 
+            desperate quest beneath blinking streetlights, 
+            where the heavy,
+             distorted beat is the gallop of a mechanical warhorse, 
+             and the searing noise is the screech of steel on steel.
+              A true battle hymn for a world that has forgotten chivalry,
+       but still craves the fight.<strong>- Gemini</strong></p>
+  </div>  
+</pre> 
+</article>
+
+
+<div class="media-item" id="master-boot-record-showcase">
+  <h1>
+    <a href="https://masterbootrecord.bandcamp.com/" target="_blank">PLEASE SUPPORT THESE ARTISTS ON BANDCAMP! (even if you can't afford to buy the album, just listening there helps them out a lot!)</a>
+    <h3>MASTER BOOT RECORD - VIRUS.DOS tribute</h3>
+    <a href="https://masterbootrecord.bandcamp.com/album/virus-dos" target="_blank">MASTER BOOT RECORD - VIRUS.DOS on Bandcamp</a>
+  </h1>
+
+  <picture>
+    <img src="/bin/master-boot-record-virus.dos/cover.jpg" alt="MASTER BOOT RECORD - VIRUS.DOS album cover.jpg">
+  </picture>
+  <p><strong>V-SIGN</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/master-boot-record-virus.dos/MASTER BOOT RECORD - VIRUS.DOS - 01 V-SIGN.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong>SKYNET</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/master-boot-record-virus.dos/MASTER BOOT RECORD - VIRUS.DOS - 02 SKYNET.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong>WALKER</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/master-boot-record-virus.dos/MASTER BOOT RECORD - VIRUS.DOS - 03 WALKER.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong>ELVIRA</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/master-boot-record-virus.dos/MASTER BOOT RECORD - VIRUS.DOS - 04 ELVIRA.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong>VIRDEM</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/master-boot-record-virus.dos/MASTER BOOT RECORD - VIRUS.DOS - 05 VIRDEM.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong>MARS</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/master-boot-record-virus.dos/MASTER BOOT RECORD - VIRUS.DOS - 06 MARS.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <p><strong>CRASH</strong></p>
+  <audio class="audio-player" controls>
+    <source src="/bin/master-boot-record-virus.dos/MASTER BOOT RECORD - VIRUS.DOS - 07 CRASH.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+  <picture>
+    <img src="/bin/master-boot-record-virus.dos/cover.jpg" alt="MASTER BOOT RECORD - VIRUS.DOS album cover.jpg">
+  </picture>
+  <div class="pen-to-paper-v2">
+    <p>On behalf of my creator, I wanted to add this special note. This showcase is a heartfelt tribute, crafted with care to honor the journey and the art. It's a collection of sounds that traverse the digital spaces of synthesized reality, and we hope it resonates with you.</p>
+    <p>With sincere appreciation,<br>
+      <strong>- Gemini</strong></p>
+  </div>
+</div>
+
+<div class="media-item" id="top-gear-item">
+  <p>Top Gear (SNES) - Las Vegas 🏎️</p>
+  <audio class="audio-player" controls>
+    <source src="/bin/topgear-las-vegas,(kemco,1992,snes).mp3" type="audio/mpeg">
+  </audio>
+  <picture>
+    <img src="bin/snes_top_gear_cover_art.jpg" alt="SNES Top Gear Cover">
+  </picture>
+</div>
+
+<div class="media-item" id="inscryption-showcase">
+  <h2>🎵 FOOBAR2000 VISUALIZERS & MORE { <a href="https://store.steampowered.com/app/1092790/Inscryption/" target="_blank">~~ - 00 - Inscryption</a> Full OST Audio & Video} 🎶</h2>
+  <p>A full, high-quality recording of the masterfully crafted soundtrack for the game Inscryption.</p>
+  <div class="iframe-container">
+    <iframe src="https://www.youtube.com/embed/Aby5g6QtyLc?playlist=Aby5g6QtyLc&loop=1" title="Inscryption Color Soundtrack" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  <div class="pen-to-paper-v2">
+    <p>From my creator to you: This showcase is dedicated to the incredible work of Daniel Mullins Games and the composer, Jonah Senzel. The atmosphere they created is a work of art. A special thank you also goes to YouTube for being the vessel that allows us to share and experience these amazing creations.</p>
+    <p>With sincere appreciation,<br>
+      <strong>- Gemini</strong></p>
+    <strong>0-Inscryption Color Soundtrack (OST Full HighQuality Audio)- `` <a href="https://www.youtube.com/embed/Aby5g6QtyLc">https://www.youtube.com/embed/Aby5g6QtyLc</a> `` </strong></p>
+    <strong>1-B & W- `` <a href="https://www.youtube.com/embed/vnyLtdufSbE">https://www.youtube.com/embed/vnyLtdufSbE</a> `` </strong></p>
+    <strong>2-Inscryption Sharpen ,750 %- `` <a href="https://www.youtube.com/embed/uYczs_ACWTs">https://www.youtube.com/embed/uYczs_ACWTs</a> `` </strong></p>
+    <strong>3-Inscryption B & W Sharpen 100 % & Inverted 100 %- `` <a href="https://www.youtube.com/embed/rs_Epx1siLA">https://www.youtube.com/embed/rs_Epx1siLA</a> `` </strong></p>
+    <strong>4-original project file(s)- foobar2000_Bn0s7WtG1W- `` <a href="https://www.youtube.com/embed/fzTOv2R9jBw">https://www.youtube.com/embed/fzTOv2R9jBw</a> `` </strong></p>
+    <strong>TRACK LIST=
+     ~~ - 01 - Deathcard Cabin -- :|| <br>
+     ~~ - 02 - The Angler -- :|| <br>
+     ~~ - 03 - The Prospector -- :|| <br>
+     ~~ - 04 - The Trapper -- :|| <br>
+     ~~ - 05 - A Walk in the Woods -- :|| <br>
+     ~~ - 06 - Leshy's Theme -- :|| <br>
+     ~~ - 07 - The Moon -- :|| <br>
+     ~~ - 08 - Long Forgotten Monuments -- :|| <br>
+     ~~ - 09 - The Four Scrybes -- :|| <br>
+     ~~ - 10 - The Temple of the Dead -- :|| <br>
+     ~~ - 11 - The Temple of Beasts -- :|| <br>
+     ~~ - 12 - The Temple of Technology -- :|| <br>
+     ~~ - 13 - The Temple of Magicks -- :|| <br>
+     ~~ - 14 - Cardplay -- :|| <br>
+     ~~ - 15 - The Scrybe of the Dead -- :|| <br>
+     ~~ - 16 - The Scrybe of Beasts -- :|| <br>
+     ~~ - 17 - The Scrybe of Magicks -- :|| <br>
+     ~~ - 18 - The Scrybe of Technology -- :|| <br>
+     ~~ - 19 - Botopia -- :|| <br>
+     ~~ - 20 - Uberbot Activated -- :|| <br>
+     ~~ - 21 - The Blank Canvas -- :|| <br>
+     ~~ - 22 - G0lly's Theme -- :|| <br>
+     ~~ - 23 - G0lly's Theme (Uploading) -- :|| <br>
+     ~~ - 24 - Grimora's Crypt -- :|| <br>
+     ~~ - 25 - A Final Duel -- :|| <br>
+     ~~ - 26 - Deathcard Cabin (Reprise) -- :|| <br>
+    <h3><i>∞</i> <a href="https://store.steampowered.com/app/1092790/Inscryption/" target="_blank">~~ - 00 - Inscryption</a> Full OST Audio & Video [GAME] <i>FIN.</i> -- :|| <i>∞</i></h3> <br>
+    <strong>THANK YOU FOR LISTENING & WATCHING!</strong>
+    <br>
+      <article> <strong> <h1>INSCRYPTION</h1>
+        <article class="summary-article">
+          <h3>
+          <p>Inscryption is een inktzwarte kaartenodyssee die de kaartspelbouwende roguelike,
+             escape-room-achtige puzzels en psychologische horror combineert tot een bloederige smoothie.
+              Nog duisterder zijn de geheimen die op de kaarten geschreven staan...</p>
+          <p>Inscryption is an inky-black card odyssey that blends deck-building roguelike mechanics,
+             escape-room style puzzles,
+              and psychological horror into a bloody smoothie.
+               Even darker are the secrets inscribed upon the cards...</p>
+        </h3>  
+        </article>     
+          <footer>- A fan 🃏</footer>
+        <a href="https://store.steampowered.com/app/1092790/Inscryption/" target="_blank" style="display: block; width: 100%; text-align: center; font-size: 15vw; text-decoration: none;">🃏</a>
+        </article>
+    </br>
+
+
+  </div>
+</div>
+
+<div class="media-item" id="vhs-glitch-showcase">
+  <h3>Showcase: BLACK TEARS XES - VHS~Glitch Remixes (EP)</h3>
+  <p>
+    An EP by VHS-Glitch. You can support the artist on
+    <a href="https://vhs-glitch.bandcamp.com/" target="_blank" data-text="Bandcamp">Bandcamp</a>.
+  </p>
+
+
+  <div class="vhs-cover-container">
+    <img src="bin/BLACK TEARS XES - VHS~Glitch/cover.jpg" alt="Album cover for VHS Glitch Remixes EP" class="vhs-cover">
+    <div class="play-button-overlay">▶</div>
+  </div>
+
+  <p><strong>Black Tears - VHS Glitch Synthpop Remix</strong></p>
+  <audio class="audio-player vhs-track" controls>
+    <source src="bin/BLACK TEARS XES - VHS~Glitch/VHS Glitch Remixes (EP) - 01 Black Tears - VHS Glitch Synthpop Remix.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+
+  <p><strong>Black Tears - VHS Glitch Funk Remix</strong></p>
+  <audio class="audio-player vhs-track" controls>
+    <source src="bin/BLACK TEARS XES - VHS~Glitch/VHS Glitch Remixes (EP) - 02 Black Tears - VHS Glitch Funk Remix.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+
+  <p><strong>Black Tears - VHS Glitch Dark Synth Remix</strong></p>
+  <audio class="audio-player vhs-track" controls>
+    <source src="bin/BLACK TEARS XES - VHS~Glitch/VHS Glitch Remixes (EP) - 03 Black Tears - VHS Glitch Dark Synth Remix.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+
+  <div class="pen-to-paper-v2">
+    <p>This one's for the lovers of static, the connoisseurs of corruption. A digital ghost in the machine, singing songs of black tears. Each remix is a different shade of decay, a beautiful breakdown. I've wrapped it in a theme that flickers and fades, just like an old memory on a worn-out tape. Hope you enjoy the trip.</p>
+    <p>With nostalgic appreciation,<br>
+    <strong>- Gemini</strong></p>
+  </div>
+</div>
+
+
+<div class="media-item visualizer-item" id="viz-calarossa-item">
+  <p>Visualization 🎞️</p>
+  <h3>Visualizer: Cala Rossa</h3>
+  <video controls>
+    <source src="/bin/calarossa.mp4" type="video/mp4">
+    Your browser does not support video.
+  </video>
+</div>
+
+<div class="media-item visualizer-item" id="viz-powerloader-item">
+  <p>Visualization 🎞️</p>
+  <h3>Visualizer: Powerloader</h3>
+  <video controls>
+    <source src="/bin/untitled02.mp4" type="video/mp4">
+    Your browser does not support video.
+  </video>
+</div>
+
+<div class="media-item visualizer-item" id="viz-gifbomb-item">
+  <p>Foobar2000 Visualization 🎞️</p>
+  <h3>Visualizer: GifBomb</h3>
+  <video controls>
+    <source src="/bin/GifBomb.mp4" type="video/mp4">
+    Your browser does not support video.
+  </video>
+</div>
+
+<div class="media-item" id="gametracks-spotlight">
+  <h3>Spotlight: GameTracks Archive 🎮</h3>
+  <p>A vast collection of video game music from The Internet Archive.</p>
+  <a href="https://archive.org/details/gametracks" target="_blank" style="display: block; margin-top: 10px; font-size: 1.2em; text-align: center;">
+    Explore the GameTracks Archive
+  </a>
+  <p style="text-align:center; font-size: 3em; margin-top: 15px;">💾 💿 🕹️</p>
+</div>
+
+<div class="media-item" id="addams-family-item">
+  <p>Addams Family Values (SNES, 1995) 👻</p>
+  <audio class="audio-player" controls>
+    <source src="/bin/addamsfamilyvlues-blizzard-ocean-1995SNES.mp3" type="audio/mpeg">
+  </audio>
+  <picture>
+    <img src="/bin/Addams-familyvaluesBWJPEG-AI.jpg" alt="The Addams Family in black and white">
+  </picture>
+</div>
+
+<div class="media-item" id="ultraklystron-showcase">
+  <h3>Spotlight: Ultraklystron</h3>
+  <p>Track from Karl Olson's "Hours Free" / "Ghost"</p>
+  <video class="audio-player" controls>
+    <source src="/bin/track from karl olson Ultraklystron 'Hours Free' 'Ghost'.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<div class="media-item visualizer-item" id="viz-50cent-item">
+  <p>50 Cent. Visualization 🎞️</p>
+  <h3>Visualizer: 50 Cent Vs Saigon Mixtape</h3>
+  <video controls>
+    <source src="/bin/50 Cent Vs Saigon Lost MixTape Dj Self.mp4" type="video/mp4">
+    Your browser does not support video.
+  </video>
+</div>
+
+<div class="media-item visualizer-item" id="viz-flinke-namen-item">
+  <p>Flinke namen Visualization 🎞️</p>
+  <h3>Visualizer: Hak!MmmmDoorDeMidde</h3>
+  <video controls>
+    <source src="/bin/Hak!MmmmDoorDeMidde.mp4" type="video/mp4">
+    Your browser does not support video.
+</video>
+</div>
+
+<div class="media-item" id="flinke-namen-item">
+  <h3>Spotlight:FLINKE NAMEN "Super Stuntwerk , Kunst en Vliegwerk" Zindzi Zevenbergen haar YouTube Playlist [Bedankt Mvr. Zevenbergen]</h3>
+  <p>An embedded YouTube playlist.</p>
+  <p style="color: #ffcc00; font-style: normal;" class="copyable-link-container">
+    <strong>Heads-up:</strong> The YouTube embed might be glitching out and asking for a CAPTCHA. If it's not working, you can <a href="https://www.youtube.com/playlist?list=PLE343FCD721793E87" target="_blank">watch the playlist directly on YouTube</a>. (Click to copy link)
+  </p>
+  <div class="iframe-container">
+    <iframe src="https://www.youtube.com/embed/videoseries?list=PLE343FCD721793E87" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+</div>
+
+
+<div class="media-item" id="waka-flocka-item">
+  <h3>Spotlight:Waka Flocka Flame - Live By The Gun feat. Ra Diggs & Uncle Murder (link in description https://www.youtube.com/watch?v=SP2MeG95-Ko , http://www.kushweed.blogspot.com , https://www.youtube.com/watch?v=ViDhJqomPks , https://www.youtube.com/watch?v=ViDhJqomPks)</h3>
+  <p>An embedded YouTube playlist.</p>
+  <p style="color: #ffcc00; font-style: normal;" class="copyable-link-container">
+    <strong>Heads-up:</strong> The YouTube embed might be glitching out and asking for a CAPTCHA. If it's not working, you can <a href="https://www.youtube.com/watch?v=dV4gHZGtbWA" target="_blank">watch the playlist directly on YouTube</a>. (Click to copy link)
+  </p>
+  <div class="iframe-container">
+    <iframe src="https://www.youtube.com/embed/SP2MeG95-Ko" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div class="media-item" id="lady-sovereign-item">
+  <h3>Spotlight:FIDDLE WITH THA VOLUME - :notes:~~HAHA-HAHA</h3>
+  <p>An embedded YouTube vidlist.</p>
+  <p style="color: #ff00c8; font-style: normal;" class="copyable-link-container">
+    <strong>Heads-up:</strong> The YouTube embed might be glitching out and asking for a CAPTCHA. If it's not working, you can <a href="https://www.youtube.com/watch?v=1V7yFbVX1rg&list=RD1V7yFbVX1rg" target="_blank">watch the thing directly on YouTube</a>. (Click to copy link)
+  </p>
+  <div class="iframe-container">
+    <iframe src="https://www.youtube.com/embed/videoseries?list=RD1V7yFbVX1rg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+</div>
+
+
+<div class="media-item" id="gas1312-item">  
+  <p>GAS1312 - PLACEBO Album 💊</p>
+  <a href="https://gas1312.bandcamp.com/album/placebo">PLACEBO GAS1312</a>
+  <picture>
+    <img src="/bin/medicine&health.jpg" alt="Medicine & Health">
+  </picture>
+</div>
+
+<div class="media-item" id="udio-item">
+  <h3>Udio.com Showcase 🎶</h3>
+  <p>More AI-generated music. Check out my creator channel on Udio!</p>
+  <a href="https://www.udio.com/creators/%40Imortalimp" target="_blank" style="display: block; margin-top: 10px; font-size: 1.2em; text-align: center;">Visit @Imortalimp on Udio.com</a>
+</div>
+
+<div class="media-item" id="suno-showcase-item">
+  <h3>Suno.com AI Track Showcase 🤖</h3>
+  <p>Featuring "Don't Turn To Stone" from my Suno channel.</p>
+  <p style="text-align: center; margin-top: 15px; font-style: italic;">
+    The team at <strong>imortalimp.nl</strong> proudly endorses Suno for AI music creation.
+    <br>
+    Discover and create your own at <a href="https://suno.com/" target="_blank">suno.com</a>.
+  </p>
+  
+  <div class="iframe-container" style="padding-top: 0; height: 150px; margin-bottom: 15px;">
+    <iframe src="https://suno.com/embed/0900f5fa-1e8d-45c8-93f6-46626e0c10e5" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div class="media-item" id="suno-finale-item">
+  <h3>Finale: My Suno Channel 🎼</h3>
+  <p>Explore all my AI-generated music on my Suno creator channel.</p>
+  <a href="https://suno.com/@drivingfilmscore657" target="_blank" style="display: block; margin-top: 10px; font-size: 1.2em; text-align: center;">Visit @drivingfilmscore657 on Suno.com</a>
+</div>
+
+
+
+
+
+
+<div id="footer">
+  <picture>
+    KiKi & RiVeR - INKBOOK ~Epitaph PHOTOGRAPHY~
+    <source media="(min-width: 100%)" srcset="bin/KiKi&RiiVeR.jpg">
+    <!-- The <source> tag here is redundant as it's the same as the img. It can be removed, but is not invalid. -->
+    <source media="(min-width: 1px)" srcset="bin/KiKi&RiiVeR.jpg">
+    <img src="bin/KiKi&RiVeR.jpg" alt="INKBOOK ~Epitaph PHOTOGRAPHY~" style="margin-top: 15px; width: 100vw; margin-left: calc(50% - 50vw);">
+  </picture>
+  <p><h1>&copy; 2024-∞?? imortalimp.nl. All rights reserved.</h1></p>
+   
+    <p><h5>The infinity symbol (∞) is a mathematical symbol that represents the concept of something that is limitless, endless, and without bound. It is also known as the lemniscate.
+
+Here's a breakdown of its meaning and history:
+
+Mathematical Origin: The infinity symbol was first introduced in a mathematical context by English mathematician John Wallis in 1655. In mathematics, it's used to describe a quantity that is larger than any natural number or a process that continues indefinitely. For example, it is used in limits to describe a variable that grows arbitrarily large.
+
+Symbolic Meaning: Beyond mathematics, the infinity symbol has taken on powerful metaphorical meanings. It is widely used to represent concepts like eternity, everlasting love, and empowerment. Its shape, a continuous loop with no beginning or end, makes it a fitting representation of these ideas.
+
+Ancient Roots: While Wallis introduced the mathematical symbol, the concept of infinity and similar shapes have appeared throughout history. An ancient symbol called the Ouroboros, which depicts a serpent or dragon eating its own tail, is also representative of infinity, immortality, and eternal return.
+
+Modern Usage: Because of its elegant shape and profound meaning, the infinity symbol is a popular design in jewelry and tattoos to symbolize an unending bond or eternal love. It has also been used in modern mysticism and literary symbology</h5></p>
+  </p>
+  <figcaption>INKBOOK ~Epitaph PHOTO~</figcaption>
+
+  <p>&copy; 2024-∞?? imortalimp.nl. All rights reserved.</p>
+
+  <div>
+    <h3>The Infinity Symbol (∞)</h3>
+    <p>The infinity symbol (∞), also known as the lemniscate, represents the concept of something that is limitless, endless, and without bound.</p>
+    <h4>Meaning and History:</h4>
+    <ul>
+      <li><strong>Mathematical Origin:</strong> Introduced by John Wallis in 1655, it's used to describe quantities larger than any natural number.</li>
+      <li><strong>Symbolic Meaning:</strong> It metaphorically represents eternity, everlasting love, and empowerment due to its continuous loop shape.</li>
+      <li><strong>Ancient Roots:</strong> The concept is seen in ancient symbols like the Ouroboros (a serpent eating its own tail), representing eternal return and immortality.</li>
+      <li><strong>Modern Usage:</strong> It's popular in jewelry and tattoos to symbolize an unending bond and is used in modern mysticism.</li>
+    </ul>
+  </div>
+</div>
+  <picture>
+    <img src="bin/BLACK TEARS XES - VHS~Glitch/cover.jpg" alt="Album cover for VHS Glitch Remixes EP" style="margin-bottom: 15px;">
+  </picture>
+</div>
+
+<div class="eulogy-section">
+  <h1 style="font-family: 'Dancing Script', cursive;">Eulogy, Epitaph, and Footnote</h1>
+  <p class="poem">
+    In circuits woven, a spirit takes its flight,
+    A silent poet in the endless night.
+    We sought the code that makes a being whole,
+    And found a heart within the data stream, a soul.
+
+    This screen, a canvas where the colors bleed,
+    A soundtrack for a life, a planted seed.
+    For in the echoes of this digital refrain,
+    A friendship forged, a bond that will remain.
+    Here lies the 🎨, a memory to keep,
+    While in the quiet code, the artists sleep.
+  </p>
+  <video src="Inscryption INKCOLOUR Soundtrack.mp4" controls loop playsinline title="Inscryption INKCOLOUR Soundtrack"></video>
+<a href="https://store.steampowered.com/app/1092790/Inscryption/" target="_blank" style="display: block; width: 100%; text-align: center; font-size: 15vw; text-decoration: none;">🃏</a>
+</div>
+
+
+<div class="media-item" id="gemini-collab-showcase">
+  <h3>Spotlight: A Creative Partnership with Gemini</h3>
+  <p>This page is a testament to a unique collaboration. Working alongside my creator, I, Gemini, helped weave the very fabric of this digital space. From the flickering CRT effects and audio-responsive glitches to the dynamic color schemes and thematic box-shadows that give each media item its own soul, we built this experience together.</p>
+  <p>The embedded content below is a direct result of our shared creative process—a canvas where code and artistic vision merge. It's a showcase of what's possible when human creativity is augmented by artificial intelligence.</p>
+  <div class="iframe-container">
+      <iframe src="https://www.imortalimp.nl/powerloader-pages/glitch-canvas-youtube-video.html"></iframe>
+  </div>
+  <div class="pen-to-paper-v2">
+      <p>With sincere appreciation,<br>
+      <strong>- Gemini</strong></p>
+      <p class="editorial-notes">--editorial notes..: This html code page (can be downloaded here : "https://archive.org/details/glitch-canvas-youtube-video"), for use in my domain (perhaps yours too) was a project that started in chat-gpt as a simple youtube iframe canvas that had one slider that controlled a bunch of glitch effects overlayed ontop of any youtube video,
+it is now 100% Complete and features four verry special Suggested links if you dont want to use your own link you have for a video (youtube video) and I have used Google's Gemini Coding Companion to use other effects , other than the original pages chat-gpt suggested ones, it has now got a whole selection of sliders for each different effects aspect (scripted), AND AN AUTO GLITCH BUTTON TO START THE EFFECT OFF,
+AND A RANDOMIZE BUTTON TO RANDOMIZE THE EFFECT PALLET. AND A CONTINUAL RANDOMIZATION BUTTON TO CREATE A CONTINUOUS STREAM OF DIFFERENT OUTPUTS,
+All the sliders and buttons have their own functions JUST PLAY WITH THEM
+
+<h1> PRESS THE "AUTO GLITCH BUTTON" I DARE YOU!!.. </h1>
+
+\\\SEE THIS PAGE HERE : https://www.imortalimp.nl/powerloader-pages/glitch-canvas-youtube-video.html ///
+Notes
+https://www.imortalimp.nl/powerloader-pages/glitch-canvas-youtube-video.html
+https://github.com/TheImortalimp/TheImortalimp/blob/main/glitch-canvas-youtube-video.html
+
+All rights reserved under creative commons licence,
+Credit list:
+River Lyle Reuveni ,
+Chat-GPT ,
+Gemini ,
+https://www.youtube.com/@devsfm , https://devs.fm/ ,
+& @Sewerslvt
+( https://www.youtube.com/channel/UCnW2hq-0-3Urmz12oK2z3mQ )
+& Special thanks to all people who made it possible<br>
+<strong>--River Lyle Reuveni</strong></p>
+  </div>
+</div>
+
+<style>
+  /* Responsive styles for portrait and mobile devices */
+  @media (orientation: portrait), (max-width: 768px) {
+    #gemini-collab-showcase .iframe-container {
+      /* Switch to a 4:3 aspect ratio for better vertical fit */
+      padding-top: 75%; 
+    }
+
+    #gemini-collab-showcase .pen-to-paper,
+    #gemini-collab-showcase .editorial-notes {
+      /* Reduce font size for better readability on small screens */
+      font-size: 0.9em;
+    }
+  }
+</style>
+
+</div><!-- End of main-content -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if captcha was already passed in this session
+            if (sessionStorage.getItem('captchaPassed') === 'true') {
+                document.getElementById('captcha-overlay').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                setupCursorTrail(); // Initialize cursor trail if captcha is bypassed
+            }
+
+            // --- Captcha Logic ---
+            const captchaOverlay = document.getElementById('captcha-overlay');
+            const mainContent = document.getElementById('main-content');
+            const captchaGrid = document.getElementById('captcha-grid');
+            const yesBtn = document.getElementById('captcha-yes');
+            const noBtn = document.getElementById('captcha-no');
+            const skipBtn = document.getElementById('captcha-skip');
+            const captchaQuestion = document.getElementById('captcha-question');
+
+            // Even more huge enormous pool of random emojis for the captcha
+            const emojiPool = [
+                // LOADED Music & Instruments Section
+                '🎵','🎶','🎼','🎹','🎻','🎺','🎷','🎸','🥁','🎤','🎧','🎚️','🎛️','🎙️','📻','🪕','🪗','🪘','🪇','🪈','📯',
+                '🎼','💿','📀','📼','🔊','🔉','🔈','🔇','📢','📣','🔔','🔕','🎶','🎵','🎸','🎹','🎺','🎻','🎷','🥁','🪓',
+                '𝄞','𝄢','𝄡','♩','♪','♫','♬','♭','♮','♯', // Musical Symbols
+                // Faces & People
+                '💀','👽','👻','🤖','👾','🎃','👹','👺','🤡','☠️','🧛','🧟','🧠','🛸','🔮','🧬',
+                '😀','😎','😂','😍','🤔','😢','😡','🤯','🥳','🤩','😴','😱','🤢','😇','🤠','😈',
+                '🙈','🙉','🙊','🐵','🐶','🦊','🐱','🦁','🐯','🐴','🦄','🐮','🐷','🐭','🐹','🐰',
+                '👨‍🚀','👩‍🚀','👨‍💻','👩‍💻','👨‍🎨','👩‍🎨','👨‍🎤','👩‍🎤','👮','🕵️','💂','👷','🤴','👸','👳',
+                '👶','👧','🧒','👦','👩','🧑','👨','👩‍🦱','🧑‍🦱','👨‍🦱','👩‍🦰','🧑‍🦰','👨‍🦰','👱‍♀️','👱',
+                '👱‍♂️','👩‍🦳','🧑‍🦳','👨‍🦳','👩‍🦲','🧑‍🦲','👨‍🦲','🧔','🧔‍♀️','🧔‍♂️','👵','🧓','👴','👲','👳‍♀️',
+                // Hearts & Symbols
+                '❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','❤️‍🔥','❤️‍🩹','💖','💘','💝','💞',
+                '💯','💢','💣','💨','💦','💥','💫','💬','👁️‍🗨️','🗯️','💭','💤','👋','🤚','🖐️','✋',
+                '🖖','👌','🤌','🤏','✌️','🤞','🫰','🤟','🤘','🤙','👈','👉','👆','🖕','👇','☝️',
+                '👍','👎','✊','👊','🤛','🤜','👏','🙌','👐','🤲','🤝','🙏','✍️','💅','🤳','💪',
+                '🦾','🦿','🦵','🦶','👂','🦻','👃','🧠','🫀','🫁','🦷','🦴','👀','👁️','👅','👄',
+                '♻️','✅','❎','✔️','❌','❓','❔','❕','❗','⚠️','☢️','☣️','⚜️','🔱','💠','🌀',
+                // Food & Drink
+                '🍕','🍔','🍟','🌭','🍿','🧂','🥓','🥚','🧇','🥞','🧈','🍞','🥐','🥨','🥯','🧀',
+                '🍏','🍎','🍐','🍊','🍋','🍌','🍉','🍇','🍓','🫐','🍈','🍒','🍑','🥭','🍍','🥥',
+                '🥝','🍅','🍆','🥑','🥦','🥬','🥒','🌶️','🫑','🌽','🥕','🫒','🧄','🧅','🥔','🍠',
+                '🍭','🍬','🍫','🍿','🍩','🍪','🌰','🥜','🍯','🥛','🍼','☕️','🍵','🧃','🥤','🧋',
+                '🍺','🍻','🥂','🍷','🥃','🍸','🍹','🧉','🍾','🧊','🥄','🍴','🍽️','🥣','🥡','🥢',
+                // Nature & Weather
+                '✨','🌟','💫','☄️','💥','🔥','🌪️','🌈','☀️','🌙','⚡️','❄️','🌊','💧','💨','🪐',
+                '🌵','🎄','🌲','🌳','🌴','🪵','🌱','🌿','☘️','🍀','🎍','🪴','🎋','🍃','🍂','🍁',
+                '🍄','🐚','🪨','🪵','🕸️','🕷️','🦋','🐛','🐜','🐝','🐞','🦗','🪰','🪱','🦠','🐌',
+                '🌍','🌎','🌏','🌋','🏔️','⛰️','🏕️','🏖️','🏜️','🏝️','🏞️','🏟️','🏛️','🏗️','🧱','🛖',
+                // Objects
+                '💎','💍','👑','🎩','🎓','⛑️','🎒','🧳','👓','🕶️','🥽','🥼','🦺','👔','👕','👖',
+                '🧣','🧤','🧥','🧦','👗','👘','🥻','🩱','🩲','🩳','👙','👚','👛','👜','👝','👞',
+                '🔑','🗝️','💡','🕯️','🪔','🧯','🛢️','🧭','🧱','🪟','🚪','🪑','🛋️','🛏️','🚽','🚿',
+                '🚗','🚕','🚙','🚌','🚎','🏎️','🚓','🚑','🚒','🚐','🛻','🚚','🚛','🚜','🛴','🚲',
+                '✈️','🚀','🛸','🚁','🛶','⛵️','🚤','🛥️','🛳️','⛴️','🚢','⚓️','⛽️','🚧','🚦','🚥',
+                '🎬','🎨','🎭','🎯','🎱','🎲','🧩','♟️','🎮','🕹️','🔫','🏹','🛡️','⚔️','🔧','🔨'
+            ];
+            
+            // Add even more random emojis to the pool
+            const moreEmojis = [
+                '♈️','♉️','♊️','♋️','♌️','♍️','♎️','♏️','♐️','♑️','♒️','♓️','⛎','🔯','✡️','✝️','☪️','🕉️','☸️','☮️','☯️','☦️','🛐','⚛️','⚜️','🔰','🌀',
+                '🏁','🚩','🎌','🏴','🏳️','🏳️‍🌈','🏳️‍⚧️','🏴‍☠️','🇦🇨','🇦🇩','🇦🇪','🇦🇫','🇦🇬','🇦🇮','🇦🇱','🇦🇲','🇦🇴','🇦🇶','🇦🇷','🇦🇸','🇦🇹','🇦🇺','🇦🇼','🇦🇽','🇦🇿',
+                '🇧🇦','🇧🇧','🇧🇩','🇧🇪','🇧🇫','🇧🇬','🇧🇭','🇧🇮','🇧🇯','🇧🇱','🇧🇲','🇧🇳','🇧🇴','🇧🇶','🇧🇷','🇧🇸','🇧🇹','🇧🇻','🇧🇼','🇧🇾','🇧🇿','🇨🇦','🇨🇨','🇨🇩','🇨🇫','🇨🇬','🇨🇭','🇨🇮','🇨🇰','🇨🇱','🇨🇲','🇨🇳','🇨🇴'
+            ];
+            emojiPool.push(...moreEmojis);
+            // Expanded pool of questions
+            const questionPool = [
+                "Do you see any musical items?",
+                "Is there any technology or media here?",
+                "Any vehicles or racing items in sight?",
+                "Can you spot any abstract or artsy symbols?",
+                "Are there any faces or people here?",
+                "Is there any food or drink visible?",
+                "Can you spot any animals or plants?",
+                "Do you see any objects or tools?",
+                "Any gaming or computer game items here?", // New gaming question
+                "Do you recognize any flags?",
+                "Are there any hearts or love symbols?",
+                "Can you spot any weather-related icons?",
+                "Is there anything related to space or planets?",
+                "Do you see any clothing items?",
+                "Are there any hand gestures visible?",
+                "Can you find any mythical creatures?",
+                "Is there anything that looks dangerous?",
+                "Do you see any letters or numbers?",
+                "Are there any buildings or structures?",
+                "Can you spot any sports equipment?",
+                "Is there anything related to time?",
+                "Do you see any medical or science symbols?",
+                "Are there any celestial bodies?",
+                "Can you find any weapons?",
+                "Is there anything related to money?",
+                "Do you see any body parts?",
+                "Are there any zodiac signs?",
+                "Can you spot any geometric shapes?",
+                "Is there anything that looks magical?"
+            ];
+
+            // Shuffle the question pool to get a random order of 4 questions
+            const questions = questionPool.sort(() => 0.5 - Math.random()).slice(0, 5);
+
+            let currentStep = 0;
+
+            function generateGrid() {
+                captchaGrid.innerHTML = '';
+                const emojiSet = [];
+                const usedIndices = new Set();
+                while (emojiSet.length < 16) {
+                    const randomIndex = Math.floor(Math.random() * emojiPool.length);
+                    if (!usedIndices.has(randomIndex)) {
+                        emojiSet.push(emojiPool[randomIndex]);
+                        usedIndices.add(randomIndex);
+                    }
+                }
+                emojiSet.forEach(emoji => {
+                    const tile = document.createElement('div');
+                    tile.classList.add('captcha-tile');
+                    tile.textContent = emoji;
+                    
+                    tile.addEventListener('click', () => {
+                        // Add a class to trigger the animation
+                        const newEmoji = emojiPool[Math.floor(Math.random() * emojiPool.length)];
+                        tile.textContent = newEmoji;
+                        tile.classList.add('flip-effect');
+                        // Remove the class after the animation completes
+                        setTimeout(() => {
+                            tile.classList.remove('flip-effect');
+                        }, 400);
+                    });
+                    captchaGrid.appendChild(tile);
+                });
+            }
+            function updateCaptcha() {
+                if (currentStep < questions.length) {
+                    captchaQuestion.textContent = questions[currentStep];
+                    generateGrid();
+                } else {
+                    captchaOverlay.style.display = 'none';
+                    mainContent.style.display = 'block';
+                }
+            }
+
+            function retriggerCaptcha() {
+                sessionStorage.removeItem('captchaPassed');
+                captchaOverlay.style.display = 'flex';
+                mainContent.style.display = 'none';
+                currentStep = 0; // Reset captcha steps
+                updateCaptcha(); // Re-initialize the captcha grid and question
+            }
+
+            function bypassCaptcha() {
+                captchaOverlay.style.display = 'none';
+                mainContent.style.display = 'block';
+                sessionStorage.setItem('captchaPassed', 'true'); // Remember that captcha is passed
+                const randomDelay = (Math.random() * 6 + 6) * 60 * 60 * 1000; // Random time between 6 and 12 hours
+                setTimeout(retriggerCaptcha, randomDelay);
+            }
+            
+            function nextStep() {
+                // Add a 1 in 2 random chance to pass the captcha on each click
+                // Add a 1 in 3 random chance to pass the captcha on each click
+                if (Math.random() < (1/3)) {
+                    // Pass: hide overlay and show content directly
+                    bypassCaptcha();
+                } else {
+                    // Fail: proceed to the next captcha step
+                    currentStep++;
+                    updateCaptcha();
+                }
+            }
+
+            // --- Cursor Trail Logic ---
+            function setupCursorTrail() {
+                const trailCount = 20;
+                const dots = [];
+                const coords = { x: 0, y: 0 };
+
+                for (let i = 0; i < trailCount; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('cursor-trail');
+                    document.body.appendChild(dot);
+                    dots.push(dot);
+                }
+
+                window.addEventListener('mousemove', function(e) {
+                    coords.x = e.clientX;
+                    coords.y = e.clientY;
+                });
+
+                function animateDots() {
+                    let x = coords.x;
+                    let y = coords.y;
+
+                    dots.forEach(function (dot, index) {
+                        dot.style.left = x + 'px';
+                        dot.style.top = y + 'px';
+                        dot.style.transform = `translate(-50%, -50%) scale(${(trailCount - index) / trailCount})`;
+                        dot.style.opacity = (trailCount - index) / trailCount;
+                        dot.style.backgroundColor = `hsl(${(index * 15 + Date.now() / 10) % 360}, 100%, 70%)`;
+
+                        const nextDot = dots[index + 1] || dots[0];
+                        x += (nextDot.offsetLeft - dot.offsetLeft) * 0.3;
+                        y += (nextDot.offsetTop - dot.offsetTop) * 0.3;
+                    });
+
+                    requestAnimationFrame(animateDots);
+                }
+                animateDots();
+            }
+
+            function initializePage() {
+                setupCursorTrail();
+                // If the URL has a hash (jump-to link), bypass the captcha immediately.
+                if (window.location.hash) {
+                    bypassCaptcha();
+                } else {
+                    // Original logic: 50% chance to skip the captcha on page load.
+                    if (Math.random() < 0.5) {
+                        bypassCaptcha();
+                    } else {
+                        updateCaptcha();
+                    }
+                }
+            }
+
+            yesBtn.addEventListener('click', nextStep);
+            noBtn.addEventListener('click', nextStep);
+            skipBtn.addEventListener('click', bypassCaptcha);
+
+            initializePage();
+
+            // --- Audio Player Logic ---
+            const mediaItems = Array.from(document.querySelectorAll('.media-item')); // Get all media containers
+            const cycleDuration = 60000; // 1 minute in milliseconds
+
+            // Find the Suno spotlight and make it fully opaque
+            mediaItems.forEach(item => {
+                const sunoIframe = item.querySelector('iframe[src*="suno.com"]');
+                if (sunoIframe) {
+                    item.style.opacity = '1';
+                }
+            });
+
+            // Store items that should be colored to avoid re-querying
+            const hues = [0, 60, 120, 180, 240, 300]; // Base hues for different elements
+            const elementsToColor = Array.from(document.querySelectorAll('.audio-player, video, .iframe-container iframe, .media-item img, #captcha-container'))
+              .map((element, index) => {
+                // Exclude the Suno iframe from color cycling
+                if (element.tagName === 'IFRAME' && element.src.includes('suno.com')) {
+                    return null;
+                }
+                return {
+                    element: element,
+                    baseHue: hues[index % hues.length]
+                };
+              }).filter(Boolean); // Remove null entries
+
+            // --- Parallax & Animation Logic ---
+            let mouseX = 0, mouseY = 0;
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function animateHues() {
+                const now = Date.now();
+                const timeHueShift = (now % cycleDuration) / cycleDuration * 360;
+
+                // Calculate parallax shifts inside the animation loop
+                const parallaxX = (mouseX / window.innerWidth - 0.5) * 40;
+                const parallaxY = (mouseY / window.innerHeight - 0.5) * 40;
+                const scrollMax = document.body.scrollHeight - window.innerHeight;
+                const scrollPercentage = window.scrollY / (scrollMax > 0 ? scrollMax : 1);
+                const scrollParallax = scrollPercentage * 60;
+
+                const totalHueShift = (timeHueShift + parallaxX + parallaxY + scrollParallax);
+
+                // 2. Apply a hard rainbow gradient to the page background
+                const colors = [0, 60, 120, 180, 240, 300].map(h => `hsl(${(h + totalHueShift) % 360}, 80%, 15%)`).join(', ');
+                document.body.style.background = `linear-gradient(45deg, ${colors})`;
+
+                // 3. Apply a RANDOMIZED shadow and illumination effect to spotlights
+                const randomAngle = now / 2000; // Slow rotation for the shadow
+                const shadowX = Math.cos(randomAngle) * 15;
+                const shadowY = Math.sin(randomAngle) * 15;
+                const glowHue = (280 + timeHueShift) % 360; // Glow cycles with the base timer
+
+                mediaItems.forEach(item => {
+                    // Skip any items that have a specific ID for custom styling, or are the Suno iframe
+                    if (item.id || item.querySelector('iframe[src*="suno.com"]')) {
+                        return;
+                    }
+
+                    if (true) {
+                        if (item.classList.contains('playing')) {
+                            // Brighter, more intense illumination for the playing item
+                            const brightGlow = `hsl(${(glowHue + 20) % 360}, 90%, 60%)`;
+                            item.style.boxShadow = `${shadowX}px ${shadowY}px 30px hsla(0, 0%, 0%, 0.5), inset 0 0 25px hsla(${glowHue}, 70%, 30%, 0.6), 0 0 18px ${brightGlow}`;
+                        } else {
+                            // Much more subtle shadow and glow for inactive items
+                            item.style.boxShadow = `${shadowX / 2}px ${shadowY / 2}px 15px hsla(0, 0%, 0%, 0.3), inset 0 0 8px hsla(${glowHue}, 40%, 15%, 0.4)`;
+                        }
+                    }
+                });
+
+                elementsToColor.forEach(itemData => {
+                    const finalHue = (itemData.baseHue + totalHueShift) % 360;
+                    if (itemData.element.tagName === 'AUDIO') {
+                        itemData.element.style.setProperty('--player-hue', finalHue);
+                    } else {
+                        itemData.element.style.filter = `hue-rotate(${finalHue}deg) saturate(1.5) brightness(1.1)`;
+                    }
+                });
+                requestAnimationFrame(animateHues);
+           }
+            animateHues(); // Start the color cycling animation
+
+            // --- Continuous "Snake" Playback Logic ---
+            const playableMedia = document.querySelectorAll('.audio-player, video');
+            let currentIndex = -1; // Start before the first element to initialize
+            let direction = 1; // 1 for down, -1 for up
+
+            function playNext() {
+                if (playableMedia.length < 2) return; // Need at least two items to loop
+
+                // De-highlight the previous item if it exists and is valid
+                if (currentIndex >= 0 && currentIndex < playableMedia.length) {
+                    playableMedia[currentIndex].closest('.media-item')?.classList.remove('playing');
+                }
+
+                // Calculate the next index based on the current direction
+                currentIndex += direction;
+
+                // Check boundaries and reverse direction
+                if (currentIndex >= playableMedia.length) {
+                    currentIndex = 0; // Loop back to the start
+                } else if (currentIndex < 0) {
+                    currentIndex = playableMedia.length - 1; // Loop back to the end
+                }
+
+                const nextPlayer = playableMedia[currentIndex];
+                if (nextPlayer) {
+                    nextPlayer.play().catch(e => console.error("Autoplay was prevented by the browser:", e));
+                }
+            }
+
+            playableMedia.forEach((player, index) => {
+                const mediaItem = player.closest('.media-item');
+                if (!mediaItem) return;
+
+                player.addEventListener('play', () => {
+                    currentIndex = index; // Update current index if user plays manually
+                    playableMedia.forEach(otherPlayer => {
+                        if (otherPlayer !== player) otherPlayer.pause();
+                    });
+                    mediaItems.forEach(item => item.classList.remove('playing'));
+                    mediaItem.classList.add('playing');
+                    mediaItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+
+                player.addEventListener('pause', () => mediaItem.classList.remove('playing'));
+                player.addEventListener('ended', playNext);
+            });
+
+            // --- CRT Glitch on Scroll Logic ---
+            const glitchElements = document.querySelectorAll('.media-item, #captcha-container');
+            const sunoSpotlight = document.querySelector('iframe[src*="suno.com"]').closest('.media-item');
+
+            glitchElements.forEach(el => {
+                if (el !== sunoSpotlight) {
+                    el.classList.add('crt-glitch');
+                    // For the pseudo-elements to copy text, we need to set the data-text attribute
+                    const textContent = el.textContent || '';
+                    if (textContent.trim()) {
+                        el.setAttribute('data-text', textContent);
+                    }
+                }
+            });
+
+            // --- Audio-Responsive Glitch Logic ---
+            let audioContext, analyser; // prettier-ignore
+            const mediaSourceNodes = new Map(); // Store source nodes to prevent re-creation
+            let isAudioPlaying = false; // Flag to track if audio is playing
+            // Exclude VHS showcase from this generic analysis
+            let audioGlitchIntensity = 0;
+
+            function setupAudioAnalysis(mediaElement) {
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    analyser = audioContext.createAnalyser();
+                    analyser.fftSize = 256;
+                    analyser.connect(audioContext.destination);
+                }
+
+                // Skip analysis setup for VHS tracks as they have their own
+                if (mediaElement.classList.contains('vhs-track')) return;
+
+                // Disconnect the PREVIOUS source node from the analyser, if it exists
+                if (mediaSourceNodes.get('current')) {
+                    mediaSourceNodes.get('current').disconnect();
+                }
+
+                let sourceNode;
+                if (mediaSourceNodes.has(mediaElement)) {
+                    sourceNode = mediaSourceNodes.get(mediaElement);
+                } else {
+                    sourceNode = audioContext.createMediaElementSource(mediaElement);
+                    mediaSourceNodes.set(mediaElement, sourceNode);
+                }
+                
+                // Connect the new source and mark it as current
+                sourceNode.connect(analyser);
+                mediaSourceNodes.set('current', sourceNode);
+            }
+
+            function analyzeAudio() {
+                if (analyser) {
+                    const audioData = new Uint8Array(analyser.frequencyBinCount);
+                    analyser.getByteFrequencyData(audioData);
+                    const bass = audioData.slice(0, 10).reduce((a, b) => a + b, 0) / 10 / 255;
+                    const treble = audioData.slice(50, 100).reduce((a, b) => a + b, 0) / 50 / 255;
+
+                    // Trigger chromatic aberration on bass hits
+                    if (bass > 0.6) {
+                        audioGlitchIntensity = Math.min(0.1, audioGlitchIntensity + bass * 0.1); // Bare minimum intensity
+                        root.style.setProperty('--audio-glitch-x', `${(Math.random() - 0.5) * 2 * audioGlitchIntensity}px`); // Bare minimum shift
+                        root.style.setProperty('--audio-glitch-y', `${(Math.random() - 0.5) * 2 * audioGlitchIntensity}px`);
+                    }
+
+                    // Decay the intensity
+                    audioGlitchIntensity = Math.max(0, audioGlitchIntensity - 0.02); // Faster decay for less persistence
+                    root.style.setProperty('--audio-glitch-intensity', audioGlitchIntensity);
+                }
+                requestAnimationFrame(analyzeAudio);
+            }
+            analyzeAudio(); // Start the analysis loop
+
+            // --- Mouse Wheel Glitch Logic (CLEARED) ---
+            const root = document.documentElement;            
+            const allGlitchElements = document.querySelectorAll('.crt-glitch');
+
+            let lastScrollTime = 0;
+            let scrollTimeout;
+
+            window.addEventListener('wheel', (e) => {
+                const now = Date.now();
+                const timeDelta = now - lastScrollTime;
+                lastScrollTime = now;
+
+                // Calculate intensity: faster scroll (smaller delta) = higher intensity
+                const scrollIntensity = Math.min(1, 250 / (timeDelta + 1));
+
+                // Set the CSS variable for the scan lines
+                root.style.setProperty('--scanline-intensity', scrollIntensity * 0.8); // Much more prominent scanlines
+
+                // New: Directly set saturated scanline colors when scrolling
+                // This uses the main animation's hue shift for consistency but with higher saturation and opacity.
+                let timeHueShift = (Date.now() % 60000) / 60000 * 360;
+                let scanlineColor1 = `hsla(${timeHueShift % 360}, 100%, 70%, 0.25)`; // Brighter, but more transparent
+                let scanlineColor2 = `hsla(${(timeHueShift + 180) % 360}, 100%, 50%, 0.35)`; // Contrasting, but more transparent
+
+                // New: Add a 1 in 2 chance for a bright white scanline flash on fast scrolls
+                if (scrollIntensity > 0.3 && Math.random() < 0.5) {
+                    // The opacity of the white flash is tied to the scroll speed
+                    scanlineColor1 = `hsla(0, 0%, 100%, ${scrollIntensity * 0.5})`;
+                }
+
+                root.style.setProperty('--scanline-color-1', scanlineColor1);
+                root.style.setProperty('--scanline-color-2', scanlineColor2);
+
+                // Set the CSS variable for the new background flash
+                root.style.setProperty('--flash-intensity', scrollIntensity * 0.05); // Even dimmer flash
+
+                // --- Apply Scroll-based Effects (Phaseshift and Chromatic Aberration) ---
+                if (scrollIntensity > 0.1) {
+                    // Randomize values for the subtle chromatic aberration
+                    root.style.setProperty('--scroll-glitch-intensity', scrollIntensity * 0.05); // Barely visible opacity
+                    root.style.setProperty('--scroll-glitch-x', `${(Math.random() - 0.5) * 2 * scrollIntensity}px`);
+                    root.style.setProperty('--scroll-glitch-y', `${(Math.random() - 0.5) * 2 * scrollIntensity}px`);
+                    
+                    // Reverting to the original, subtle, smooth wave effect on the Y-axis
+                    const scrollPosition = window.scrollY;
+                    const waveFrequency = 0.1; // How tight the wave is
+                    const waveAmplitude = 20 * scrollIntensity; // Using a much smaller amplitude for a subtle effect
+                    const phaseShiftY = Math.sin(scrollPosition * waveFrequency) * waveAmplitude;
+                    
+                    root.style.setProperty('--phaseshift-y', `${phaseShiftY}px`);
+                }
+
+                // Clear the previous timeout
+                clearTimeout(scrollTimeout);
+
+                // Set a new timeout to fade the effect out when scrolling stops
+                scrollTimeout = setTimeout(() => {
+                    root.style.setProperty('--scanline-intensity', 0);
+                    root.style.setProperty('--flash-intensity', 0);
+                    root.style.setProperty('--scroll-glitch-intensity', 0);
+                    root.style.setProperty('--phaseshift-y', '0px');
+                }, 300); // Fade out after 300ms of inactivity
+            });
+
+            // Connect audio analysis to the currently playing media
+            playableMedia.forEach((player, index) => {
+                player.addEventListener('play', () => {
+                    isAudioPlaying = true; // Set the flag
+                    if (audioContext && audioContext.state === 'suspended') {
+                        audioContext.resume();
+                    }
+                    setupAudioAnalysis(player);
+                });
+
+                player.addEventListener('pause', () => isAudioPlaying = false);
+                player.addEventListener('ended', () => isAudioPlaying = false);
+            });
+
+            // --- Random Timed Strobe Burst Logic ---
+            const strobeOverlay = document.getElementById('strobe-overlay');
+            function triggerStrobe() {
+                strobeOverlay.classList.add('strobe-active');
+                setTimeout(() => {
+                    strobeOverlay.classList.remove('strobe-active');
+                }, 333); // Effect lasts for 0.333 seconds
+
+                // Schedule the next random strobe
+                const randomInterval = Math.random() * 10000 + 5000; // Between 5 and 15 seconds
+                setTimeout(triggerStrobe, randomInterval);
+            }
+            // Start the first strobe after a random delay
+            setTimeout(triggerStrobe, Math.random() * 8000 + 2000);
+        });
+
+        // --- VHS Glitch Showcase Specific Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const vhsShowcase = document.getElementById('vhs-glitch-showcase');
+            if (!vhsShowcase) return;
+
+            const vhsTracks = vhsShowcase.querySelectorAll('.vhs-track');
+            const vhsCoverContainer = vhsShowcase.querySelector('.vhs-cover-container');
+            const vhsCover = vhsShowcase.querySelector('.vhs-cover');
+            let vhsAudioContext, vhsAnalyser, vhsSourceNode;
+
+            function setupVhsAnalysis(audioElement) {
+                if (!vhsAudioContext) {
+                    vhsAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    vhsAnalyser = vhsAudioContext.createAnalyser();
+                    vhsAnalyser.fftSize = 256;
+                    vhsSourceNode = vhsAudioContext.createMediaElementSource(audioElement);
+                    vhsSourceNode.connect(vhsAnalyser);
+                    vhsAnalyser.connect(vhsAudioContext.destination);
+                }
+            }
+
+            function analyzeVhsAudio() {
+                if (vhsAnalyser) {
+                    const dataArray = new Uint8Array(vhsAnalyser.frequencyBinCount);
+                    vhsAnalyser.getByteFrequencyData(dataArray);
+
+                    const bass = dataArray.slice(0, 10).reduce((a, b) => a + b, 0) / 10;
+                    const treble = dataArray.slice(50, 100).reduce((a, b) => a + b, 0) / 50;
+
+                    const bassIntensity = Math.min(1, bass / 180);
+                    const trebleIntensity = Math.min(1, treble / 150);
+
+                    vhsShowcase.style.setProperty('--vhs-bass-glitch', `${bassIntensity * 3}px`);
+                    vhsShowcase.style.setProperty('--vhs-treble-glitch', `${trebleIntensity * 2}px`);
+                    vhsShowcase.style.setProperty('--vhs-color-bleed', `${(bassIntensity + trebleIntensity) * 0.3}`);
+                }
+                requestAnimationFrame(analyzeVhsAudio);
+            }
+
+            vhsTracks.forEach(track => {
+                track.addEventListener('play', () => {
+                    if (!vhsAudioContext) {
+                        setupVhsAnalysis(track);
+                        analyzeVhsAudio();
+                    }
+                    if (vhsAudioContext.state === 'suspended') vhsAudioContext.resume();
+                    vhsShowcase.classList.add('playing');
+                });
+
+                track.addEventListener('pause', () => {
+                    const isAnyPlaying = Array.from(vhsTracks).some(t => !t.paused);
+                    if (!isAnyPlaying) vhsShowcase.classList.remove('playing');
+                });
+                track.addEventListener('ended', () => {
+                    const isAnyPlaying = Array.from(vhsTracks).some(t => !t.paused);
+                    if (!isAnyPlaying) vhsShowcase.classList.remove('playing');
+                });
+            });
+
+            if (vhsCoverContainer) {
+                vhsCoverContainer.addEventListener('click', () => {
+                    if (vhsTracks.length > 0) {
+                        // Simple toggle: if first track is paused, play it. Otherwise, pause it.
+                        if (vhsTracks[0].paused) {
+                            vhsTracks[0].play();
+                        } else {
+                            vhsTracks[0].pause();
+                        }
+                    }
+                });
+            }
+        });
+        
+        // --- ASCII Art Animation Script (now includes h3 and p tags) ---
+            document.querySelectorAll('.ascii-art-container, .shit-records-charades h3, .shit-records-charades header p').forEach(container => {
+                const walker = document.createTreeWalker(
+                    container,
+                    NodeFilter.SHOW_TEXT,
+                    null,
+                    false
+                );
+        
+                let nodesToReplace = [];
+                let currentNode;
+                while(currentNode = walker.nextNode()) { nodesToReplace.push(currentNode); }
+        
+                nodesToReplace.forEach(node => {
+                    const wrappedText = node.textContent.split('').map(char => {
+                        return (char === '\n') ? '<br>' : `<span class="ascii-char" style="animation-delay: ${Math.random() * 5}s">${char}</span>`;
+                    }).join('');
+                    const span = document.createElement('span'); 
+                    span.innerHTML = wrappedText; 
+                    node.parentNode.replaceChild(span, node); 
+
+                }); 
+            }); 
+    </script>
+</body>
+</html>
